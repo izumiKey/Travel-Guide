@@ -233,7 +233,6 @@ const shops = {
 "嘉顿山":{tag:"spot",cuisine:"景点·山景",addr:"美荷楼旁晨运径上山",time:"全天（建议日落前）",price:"免费",ac:"❌ 户外",sit:"⚠️ 山顶无座位",lat:22.335,lng:114.163,desc:"🏆 本地人才知道的秘密！90米高，10分钟登顶。俯瞰深水埗旧区+昂船洲大桥+ICC。日落时分金色光线洒在老区楼宇上，是香港最动人的城市全景之一。⚠️山上无灯无围栏，天黑前务必下山！",must:"日落时分的城市全景、嘉顿面包厂霓虹灯牌","imgs":["https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400","https://images.unsplash.com/photo-1519681393784-d120267933ba?w=400"]},
 
 // ── 尖沙咀·旺角·晚餐 ──
-"重庆大厦":{tag:"spot",cuisine:"地标·印度菜聚集",addr:"尖沙咀弥敦道36-44号",time:"大楼24h开放，餐厅各有营业时间",price:"—",ac:"✅ 餐厅有",sit:"✅ 餐厅有",lat:22.2964,lng:114.1728,desc:"香港最具传奇色彩的建筑之一。《重庆森林》取景地，也是南亚/非洲移民的微型城市。3-4楼聚集了多家正宗印度、巴基斯坦、阿富汗餐厅。⚠️门口有大量拉客仔，直接上电梯到目标餐厅，别被拉走。白天安全，两个女生结伴OK。",must:"新德里餐厅（3楼）、咖喱王（4楼）、Afghanistan Restaurant","imgs":["https://images.unsplash.com/photo-1555109307-f7d9da25c246?w=400","https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=400"]},
 "新德里餐厅":{tag:"food",cuisine:"印度菜",addr:"尖沙咀重庆大厦C座3楼3室",time:"12:00-15:30 / 18:00-23:30",price:"HK$80-150",ac:"✅",sit:"✅",lat:22.2964,lng:114.1728,desc:"🏆 《Lonely Planet》推荐！重庆大厦最老牌印度餐厅，开业超20年。咖喱牛肉浓郁、黄油鸡嫩滑、蒜蓉烤饼香气扑鼻。门口极其隐蔽（连招牌都没有），跟着楼下持牌员工走。",must:"咖喱牛肉、黄油鸡(Butter Chicken)、蒜蓉烤饼、芒果Lassi","imgs":["https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=400","https://images.unsplash.com/photo-1565557623262-b51c2513a641?w=400"]},
 "K11 MUSEA":{tag:"spot",cuisine:"商场·艺术",addr:"尖沙咀梳士巴利道18号",time:"10:00-22:00",price:"免费进入",ac:"✅ 全程空调",sit:"✅",lat:22.2955,lng:114.1745,desc:"香港最新艺术购物馆。建筑本身是艺术品——歌剧院式中庭、Gold Ball球体装置、7楼空中花园俯瞰维港。MoMA Design Store亚洲最大分店在此。45分钟足够逛完重点。",must:"7楼空中花园、歌剧院式中庭、MoMA Design Store","imgs":["https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=400","https://images.unsplash.com/photo-1519751138087-5f0af89269f6?w=400"]},
 "肥姐小食店":{tag:"food",cuisine:"港式·冷卤味",addr:"旺角登打士街55号地下4A号铺",time:"14:00-23:00（售完即止）",price:"HK$35-46",ac:"❌ 仅外卖",sit:"❌ 路边站着吃",lat:22.3152,lng:114.1705,desc:"🏆 旺角最传奇的排队店！冰镇卤味+黄芥末酱的组合堪称一绝。大皇牌套餐（大墨鱼+大生肠+火鸡肾）是灵魂之选——墨鱼爽脆、生肠弹牙、鸡肾入味。黄芥末攻鼻但不辣。买满$100可以不排队直接写单。",must:"大皇牌套餐（大墨鱼+大生肠+火鸡肾 HK$35）","imgs":["https://images.unsplash.com/photo-1567306226416-28f0efdc88ce?w=400","https://images.unsplash.com/photo-1529692236671-f1f6cf9683ba?w=400"]},
@@ -411,13 +410,15 @@ function renderShopDir(shopsList, title) {
     h += `<h3>${typeNames[type]||type}</h3>`;
     ids.forEach(id => {
       const s = shops[id];
-      const cardEnc = encodeURIComponent(id + ' 香港');
+      const cardOR = 'https://www.openrice.com/zh/hongkong/restaurants?what=' + encodeURIComponent(id + ' 香港');
+      const cardXHS = isMobile() ? ('xhsdiscover://search/result?keyword=' + encodeURIComponent(id + ' 香港')) : ('https://www.xiaohongshu.com/search_result?keyword=' + encodeURIComponent(id + ' 香港') + '&type=51');
+      const cardDP = isMobile() ? ('dianping://search?keyword=' + encodeURIComponent(id + ' 香港')) : ('https://www.dianping.com/search/keyword/8/0_' + encodeURIComponent(id + ' 香港'));
       h += `<div class="card" onclick="openModal('${id}')">
-        ${distBadge(id)}<div class="name">${id} <span class="tag tag-${s.tag}">${s.cuisine||''}</span>
+        <div class="name">${id} <span class="tag tag-${s.tag}">${s.cuisine||''}</span>
           <span class="card-links">
-            <a class="or" href="https://www.openrice.com/zh/hongkong/restaurants?what=${cardEnc}" target="_blank" onclick="event.stopPropagation()" title="OpenRice">🍽️</a>
-            <a class="xhs" href="https://www.xiaohongshu.com/search_result?keyword=${cardEnc}&type=51" target="_blank" onclick="event.stopPropagation()" title="小红书">📕</a>
-            <a class="dp" href="https://www.dianping.com/search/keyword/8/0_${cardEnc}" target="_blank" onclick="event.stopPropagation()" title="大众点评">⭐</a>
+            <a class="or" href="${cardOR}" target="_blank" onclick="event.stopPropagation()" title="OpenRice">🍽️</a>
+            <a class="xhs" href="${cardXHS}" target="_blank" onclick="event.stopPropagation()" title="小红书">📕</a>
+            <a class="dp" href="${cardDP}" target="_blank" onclick="event.stopPropagation()" title="大众点评">⭐</a>
           </span>
         </div>
         <div class="meta">
@@ -539,11 +540,45 @@ function initGeolocation() {
   );
 }
 
+
+function isMobile() {
+  return /Android|iPhone|iPad|iPod|webOS/i.test(navigator.userAgent);
+}
+
+function xhsLink(keyword) {
+  const kw = encodeURIComponent(keyword + ' 香港');
+  const web = 'https://www.xiaohongshu.com/search_result?keyword=' + kw + '&type=51';
+  const app = 'xhsdiscover://search/result?keyword=' + kw;
+  if (isMobile()) {
+    // Try app first, fallback to web after 2s
+    return 'javascript:(function(){var w=window.open("'+app+'");setTimeout(function(){if(!document.hidden)window.location="'+web+'"},1500);})()';
+  }
+  return web;
+}
+
+function dpLink(keyword) {
+  const kw = encodeURIComponent(keyword + ' 香港');
+  const web = 'https://www.dianping.com/search/keyword/8/0_' + kw;
+  const app = 'dianping://search?keyword=' + kw;
+  if (isMobile()) {
+    return 'javascript:(function(){var w=window.open("'+app+'");setTimeout(function(){if(!document.hidden)window.location="'+web+'"},1500);})()';
+  }
+  return web;
+}
+
+function platformLinks(shopName) {
+  return '<div class="platform-links">' +
+    '<a class="or" href="https://www.openrice.com/zh/hongkong/restaurants?what=' + encodeURIComponent(shopName + ' 香港') + '" target="_blank">🔍 OpenRice 搜索</a>' +
+    '<a class="xhs" href="' + xhsLink(shopName) + '">📕 小红书 搜索</a>' +
+    '<a class="dp" href="' + dpLink(shopName) + '">⭐ 大众点评 搜索</a>' +
+    '</div>';
+}
+
 function openModal(shopId) {
   const s = shops[shopId];
   if(!s) return;
   let imgsHtml = s.imgs ? s.imgs.map(u => `<img src="${u}" alt="${shopId}" onerror="this.style.display='none'">`).join('') : '';
-  const enc = encodeURIComponent(shopId); const or_q = encodeURIComponent(shopId + " 香港"); const links = `<div class="platform-links"><a class="or" href="https://www.openrice.com/zh/hongkong/restaurants?what=${or_q}" target="_blank">🔍 OpenRice 搜索</a><a class="xhs" href="https://www.xiaohongshu.com/search_result?keyword=${or_q}&type=51" target="_blank">📕 小红书 搜索</a><a class="dp" href="https://www.dianping.com/search/keyword/8/0_${or_q}" target="_blank">⭐ 大众点评 搜索</a></div>`;
+
   const tagColors = {food:'tag-food',cafe:'tag-cafe',shop:'tag-shop',spot:'tag-spot',dinner:'tag-dinner'};
   document.getElementById('modalBox').innerHTML = `
     <div class="body">
@@ -557,7 +592,7 @@ function openModal(shopId) {
       </div>
       <div class="desc">${s.desc}</div>
       ${s.must ? '<div class="must-try">✨ 必试：'+s.must+'</div>' : ''}
-      ${imgsHtml ? '<div class="gallery">'+imgsHtml+'</div>' : ''}${links}
+      ${imgsHtml ? '<div class="gallery">'+imgsHtml+'</div>' : ''}${platformLinks(shopId)}
     </div>`;
   document.getElementById('modalOverlay').classList.add('show');
   document.body.style.overflow = 'hidden';
