@@ -35,7 +35,7 @@ h3{font-size:15px;font-weight:600;margin:20px 0 8px}
 .timeline::before{content:'';position:absolute;left:11px;top:4px;bottom:4px;width:2px;background:var(--border);border-radius:1px}
 .timeline-item{position:relative;margin-bottom:18px;padding:12px 16px;background:var(--card);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow)}.timeline-item:not(.transit){border-left:3px solid var(--accent);cursor:pointer}
 .timeline-item::before{content:'';position:absolute;left:-22px;top:18px;width:10px;height:10px;border-radius:50%;border:2px solid var(--accent);background:var(--bg)}
-.timeline-item.transit::before{border-color:var(--muted)}
+.timeline-item.transit::before{border-color:var(--muted)}.timeline-item.section-header{background:transparent;border:none;box-shadow:none;padding:8px 16px 4px;margin-bottom:4px}.timeline-item.section-header::before{display:none}.timeline-item.section-header .tl-dot{display:none}.timeline-item.section-header .what{font-size:15px;font-weight:700;color:var(--accent)}.timeline-item.section-header{background:transparent;border:none;box-shadow:none;padding:8px 16px 4px;margin-bottom:4px;font-weight:700;color:var(--accent)}.timeline-item.section-header::before{display:none}.timeline-item.section-header .what{font-size:14px}
 .timeline-item .time{font-size:11px;color:var(--muted);font-weight:600}
 .timeline-item .what{font-weight:600;font-size:14px}
 .timeline-item .detail{font-size:12px;color:#666;margin-top:2px}
@@ -1263,18 +1263,18 @@ function platLinks(name){return'<div class="platform-links"><a class="or" href="
 function renderRoute(k){var _rid=k;
   var r=routes[k],h='<h1>'+r.title+'</h1><p class="subtitle">'+r.sub+'</p><div class="timeline">';
   r.items.forEach(function(it){
-    var cls=it.tr?'timeline-item transit':'timeline-item';
+    var isHdr=!it.tr&&!it.shop,cls=it.tr?'timeline-item transit':isHdr?'timeline-item section-header':'timeline-item';
     var click=it.shop?" onclick=\"openModal('"+it.shop+"')\" style=\"cursor:pointer\"":"";
+    if(isHdr){h+='<div class="'+cls+'"><div class="what">'+it.w+'</div>';if(it.d)h+='<div class="detail">'+it.d+'</div>';h+='</div>'}else{
     var cid=it.shop||('_item_'+it.t+'_'+it.w.replace(/[^a-zA-Z0-9\u4e00-\u9fff]/g,'').substring(0,30));h+='<div class="'+cls+'" data-shop="'+cid+'"'+click+'>'+'<span class="tl-dot'+(checklist[cid]?' checked':'')+'" data-shop="'+cid+'" onclick="event.stopPropagation();toggleCheck(\''+cid+'\',this)"></span>';
     h+='<div class="time">'+it.t;
     if(it.shop){var d=getDist(it.shop);h+=' <span class="dist-badge-dynamic" data-shop="'+it.shop+'">'+(d!==null?fmtDist(d):'')+'</span>'}
     h+='</div><div class="what">'+it.w+'</div>';
     if(it.d)h+='<div class="detail">'+it.d+'</div>';
-    h+='</div>';
+    h+='</div>';}
   });
   return h+'</div>';
 }
-
 function renderDir(list,title){
   var h='<h1>'+title+'</h1><p class="subtitle">点击卡片查看详情</p>';
   var types={food:'🍜 美食',cafe:'☕ 咖啡·甜品',shop:'🛍️ 特色店铺',spot:'📍 景点·交通',dinner:'🍽️ 晚餐'};
