@@ -1286,7 +1286,7 @@ function renderDir(list,title){
       var s=shops[id],d=getDist(id);
       var orU='https://www.openrice.com/zh/hongkong/restaurants?what='+encodeURIComponent(s2t(id));
       var xhsU=linkXHS(id),dpU=linkDP(id),xhsS=schemeXHS(id),dpS=schemeDP(id);
-      h+='<div class="card" onclick="openModal("'+id+'")">';
+      h+='<div class="card" onclick="openModal(\''+id+'\')">';
       h+='<span class="dist-badge dist-badge-dynamic" data-shop="'+id+'" style="'+(d!==null?'':'display:none')+'">'+(d!==null?fmtDist(d):'')+'</span>';
       h+='<div class="name">'+id+' <span class="tag tag-'+s.tag+'">'+s.cuisine+'</span>';
       h+='<span class="card-links"><a class="or" href="'+orU+'" target="_blank" onclick="event.stopPropagation()" title="OpenRice">🍽️</a><a class="xhs" href="'+xhsU+'" data-scheme="'+xhsS+'" target="_blank" onclick="event.stopPropagation()" title="小红书">📕</a><a class="dp" href="'+dpU+'" data-scheme="'+dpS+'" target="_blank" onclick="event.stopPropagation()" title="大众点评">⭐</a></span></div>';
