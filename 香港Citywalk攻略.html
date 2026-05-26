@@ -411,7 +411,7 @@ function renderShopDir(shopsList, title) {
     ids.forEach(id => {
       const s = shops[id];
       const cardOR = 'https://www.openrice.com/zh/hongkong/restaurants?what=' + encodeURIComponent(id + ' 香港');
-      const cardXHS = isMobile() ? ('xhsdiscover://search/result?keyword=' + encodeURIComponent(id + ' 香港')) : ('https://www.xiaohongshu.com/search_result?keyword=' + encodeURIComponent(id + ' 香港') + '&type=51');
+      const cardXHS = isMobile() ? ('https://oia.xiaohongshu.com/?target=' + encodeURIComponent('xhsdiscover://search/result?keyword=' + encodeURIComponent(id + ' 香港'))) : ('https://www.xiaohongshu.com/search_result?keyword=' + encodeURIComponent(id + ' 香港') + '&type=51');
       const cardDP = isMobile() ? ('dianping://search?keyword=' + encodeURIComponent(id + ' 香港')) : ('https://www.dianping.com/search/keyword/8/0_' + encodeURIComponent(id + ' 香港'));
       h += `<div class="card" onclick="openModal('${id}')">
         <div class="name">${id} <span class="tag tag-${s.tag}">${s.cuisine||''}</span>
@@ -548,14 +548,11 @@ function isMobile() {
 function xhsLink(keyword) {
   const kw = encodeURIComponent(keyword + ' 香港');
   const web = 'https://www.xiaohongshu.com/search_result?keyword=' + kw + '&type=51';
-  const app = 'xhsdiscover://search/result?keyword=' + kw;
   if (isMobile()) {
-    // Try app first, fallback to web after 2s
-    return 'javascript:(function(){var w=window.open("'+app+'");setTimeout(function(){if(!document.hidden)window.location="'+web+'"},1500);})()';
+    return 'https://oia.xiaohongshu.com/?target=' + encodeURIComponent('xhsdiscover://search/result?keyword=' + kw);
   }
   return web;
 }
-
 function dpLink(keyword) {
   const kw = encodeURIComponent(keyword + ' 香港');
   const web = 'https://www.dianping.com/search/keyword/8/0_' + kw;
