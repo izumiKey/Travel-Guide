@@ -53,7 +53,7 @@ h3{font-size:15px;font-weight:600;margin:20px 0 8px}
 .dist-badge{position:absolute;top:8px;right:12px;font-size:11px;font-weight:600;padding:3px 10px;border-radius:14px;background:#eef6ff;color:#3b7dd8;white-space:nowrap}
 .dist-badge.near{background:#e8f5e9;color:#2ca089}
 .dist-badge.far{background:#f5f0ff;color:#7c4dff}
-.platform-links{display:flex;gap:10px;margin-top:14px;flex-wrap:wrap}
+.tl-dot{position:absolute;left:-22px;top:14px;width:18px;height:18px;border-radius:50%;background:var(--bg);border:2px solid var(--accent);cursor:pointer;z-index:2;display:flex;align-items:center;justify-content:center;font-size:10px;line-height:1;color:transparent;transition:.15s}.tl-dot.checked{background:var(--accent);color:#fff}.tl-dot.checked::after{content:'✓'}.timeline-item.checked{opacity:.5}.timeline-item.checked:hover{opacity:.7}.card.checked{opacity:.45}.card.checked:hover{opacity:.65}.platform-links{display:flex;gap:10px;margin-top:14px;flex-wrap:wrap}
 .platform-links a{display:inline-flex;align-items:center;gap:5px;padding:7px 14px;border-radius:20px;font-size:12px;font-weight:500;text-decoration:none;transition:.15s;border:1px solid transparent}
 .platform-links a:hover{transform:translateY(-1px)}
 .platform-links a.or{background:#fff5f0;color:#e65c41;border-color:#fdd8cc}
@@ -1226,7 +1226,7 @@ const routes = {
     ]
   }
 };
-let userPos = null, distCache = {};
+let userPos = null, distCache = {};var checklist={};try{checklist=JSON.parse(localStorage.getItem("hk_checks")||"{}")}catch(e){}function toggleCheck(id,el){checklist[id]=!checklist[id];try{localStorage.setItem("hk_checks",JSON.stringify(checklist))}catch(e){}refreshAllChecks()}function refreshAllChecks(){document.querySelectorAll(".tl-dot,.card,.timeline-item[data-shop],.modal-check").forEach(function(e){var id=e.dataset.shop;if(!id)return;if(checklist[id]){e.classList.add("checked");if(e.classList.contains("modal-check")){e.textContent='✓';e.style.background='var(--accent)';e.style.borderColor='var(--accent)';e.style.color='#fff'}}else{e.classList.remove("checked");if(e.classList.contains("modal-check")){e.textContent='';e.style.background='transparent';e.style.borderColor='#ccc';e.style.color='transparent'}}})}
 
 function isMobile(){return /Android|iPhone|iPad|iPod|webOS/i.test(navigator.userAgent)}
 
@@ -1260,12 +1260,12 @@ function schemeDP(name){return'dianping://searchshoplist?keyword='+encodeURIComp
 function platLinks(name){return'<div class="platform-links"><a class="or" href="https://www.openrice.com/zh/hongkong/restaurants?what='+encodeURIComponent(s2t(name))+'" target="_blank">🔍 OpenRice 搜索</a><a class="xhs" href="'+linkXHS(name)+'" data-scheme="'+schemeXHS(name)+'" target="_blank">📕 小红书 搜索</a><a class="dp" href="'+linkDP(name)+'" data-scheme="'+schemeDP(name)+'" target="_blank">⭐ 大众点评 搜索</a></div>'}
 
 // Render
-function renderRoute(k){
+function renderRoute(k){var _rid=k;
   var r=routes[k],h='<h1>'+r.title+'</h1><p class="subtitle">'+r.sub+'</p><div class="timeline">';
   r.items.forEach(function(it){
     var cls=it.tr?'timeline-item transit':'timeline-item';
     var click=it.shop?" onclick=\"openModal('"+it.shop+"')\" style=\"cursor:pointer\"":"";
-    h+='<div class="'+cls+'"'+click+'>';
+    var cid=it.shop||('_item_'+it.t+'_'+it.w.replace(/[^a-zA-Z0-9\u4e00-\u9fff]/g,'').substring(0,30));h+='<div class="'+cls+'" data-shop="'+cid+'"'+click+'>'+'<span class="tl-dot'+(checklist[cid]?' checked':'')+'" data-shop="'+cid+'" onclick="event.stopPropagation();toggleCheck(\''+cid+'\',this)"></span>';
     h+='<div class="time">'+it.t;
     if(it.shop){var d=getDist(it.shop);h+=' <span class="dist-badge-dynamic" data-shop="'+it.shop+'">'+(d!==null?fmtDist(d):'')+'</span>'}
     h+='</div><div class="what">'+it.w+'</div>';
@@ -1286,7 +1286,7 @@ function renderDir(list,title){
       var s=shops[id],d=getDist(id);
       var orU='https://www.openrice.com/zh/hongkong/restaurants?what='+encodeURIComponent(s2t(id));
       var xhsU=linkXHS(id),dpU=linkDP(id),xhsS=schemeXHS(id),dpS=schemeDP(id);
-      h+='<div class="card" onclick="openModal(\''+id+'\')">';
+      h+='<div class="card'+(checklist[id]?' checked':'')+'" data-shop="'+id+'" onclick="openModal(\''+id+'\')">';
       h+='<span class="dist-badge dist-badge-dynamic" data-shop="'+id+'" style="'+(d!==null?'':'display:none')+'">'+(d!==null?fmtDist(d):'')+'</span>';
       h+='<div class="name">'+id+' <span class="tag tag-'+s.tag+'">'+s.cuisine+'</span>';
       h+='<span class="card-links"><a class="or" href="'+orU+'" target="_blank" onclick="event.stopPropagation()" title="OpenRice">🍽️</a><a class="xhs" href="'+xhsU+'" data-scheme="'+xhsS+'" target="_blank" onclick="event.stopPropagation()" title="小红书">📕</a><a class="dp" href="'+dpU+'" data-scheme="'+dpS+'" target="_blank" onclick="event.stopPropagation()" title="大众点评">⭐</a></span></div>';
@@ -1312,10 +1312,10 @@ function openModal(id){
   var tags={food:'tag-food',cafe:'tag-cafe',shop:'tag-shop',spot:'tag-spot',dinner:'tag-dinner'};
   var d=getDist(id),distHtml=d!==null?'<span>📏 距你 '+fmtDist(d)+'</span>':'';
   var imgs=s.imgs?s.imgs.map(function(u){return'<img src="'+u+'" alt="'+id+'" onerror="this.style.display=\'none\'">'}).join(''):'';
-  document.getElementById('modalBox').innerHTML='<div class="body"><button class="close" onclick="closeModal()">✕</button><h3>'+id+' <span class="tag '+tags[s.tag]+'">'+s.cuisine+'</span></h3><div class="info-row"><span>📍 '+s.addr+'</span><span>🕐 '+s.time+'</span><span>💰 '+s.price+'</span>'+distHtml+'</div><div class="info-row"><span>🪑 空调：'+s.ac+'</span><span>💺 可坐：'+s.sit+'</span></div><div class="desc">'+s.desc+'</div>'+(s.must?'<div class="must-try">✨ 必试：'+s.must+'</div>':'')+(imgs?'<div class="gallery">'+imgs+'</div>':'')+platLinks(id)+'</div>';
-  document.getElementById('modalOverlay').classList.add('show');document.body.style.overflow='hidden';document.body.style.position='fixed';document.body.style.width='100%';
+  document.getElementById('modalBox').innerHTML='<div class="body"><button class="close" onclick="closeModal()">✕</button><h3><span class="modal-check'+(checklist[id]?' checked':'')+'" data-shop="'+id+'" onclick="event.stopPropagation();toggleCheck(\''+id+'\',this);refreshAllChecks()" style="cursor:pointer;display:inline-block;width:22px;height:22px;line-height:22px;text-align:center;border-radius:50%;border:2px solid '+(checklist[id]?'var(--accent)':'#ccc')+';background:'+(checklist[id]?'var(--accent)':'transparent')+';color:#fff;font-size:12px;margin-right:4px;vertical-align:middle">'+(checklist[id]?'✓':'')+'</span>'+id+' <span class="tag '+tags[s.tag]+'">'+s.cuisine+'</span></h3><div class="info-row"><span>📍 '+s.addr+'</span><span>🕐 '+s.time+'</span><span>💰 '+s.price+'</span>'+distHtml+'</div><div class="info-row"><span>🪑 空调：'+s.ac+'</span><span>💺 可坐：'+s.sit+'</span></div><div class="desc">'+s.desc+'</div>'+(s.must?'<div class="must-try">✨ 必试：'+s.must+'</div>':'')+(imgs?'<div class="gallery">'+imgs+'</div>':'')+platLinks(id)+'</div>';
+  window._modalOpen=true;var _sy=window.pageYOffset||document.documentElement.scrollTop;document.getElementById('modalOverlay').classList.add('show');document.body.style.overflow='hidden';document.body.style.position='fixed';document.body.style.top='-'+_sy+'px';document.body.style.width='100%';document.body.dataset.scrollY=_sy;
 }
-function closeModal(){document.getElementById('modalOverlay').classList.remove('show');document.body.style.overflow='auto';document.body.style.position='';if(window._resetScroll)window._resetScroll()}
+function closeModal(){window._modalOpen=false;document.getElementById('modalOverlay').classList.remove('show');document.body.style.overflow='auto';document.body.style.position='';document.body.style.top='';document.body.style.width='';var _sy=parseInt(document.body.dataset.scrollY)||0;document.body.dataset.scrollY='';window.scrollTo(0,_sy);if(window._resetScroll)window._resetScroll()}
 
 // Page switching with scroll position memory
 var pageScrolls={},currentPage='planA';
@@ -1333,13 +1333,13 @@ function switchPage(id,el){
   else if(id==='dirOther')m.innerHTML=renderDir(["重庆大厦","新德里餐厅","K11 MUSEA","肥姐小食店","弥敦道金铺","中港城码头","港珠澳大桥口岸","Lonely Paisley","德丰打冷","周记油渣面","捌哥捌哥","月桥正宗越南汤粉","苏山鸡饭","缘潮味"],'尖沙咀·旺角·晚餐');
   else if(id==='info')m.innerHTML=renderInfo();
   currentPage=id;
-  setTimeout(function(){window.scrollTo(0,pageScrolls[id]||0)},50);
+  setTimeout(function(){window.scrollTo(0,pageScrolls[id]||0);setTimeout(refreshAllChecks,100)},50);
   initGeo();
 }
 
 // Init
 document.addEventListener("DOMContentLoaded",function(){try{switchPage('planA',document.querySelector('nav a[href="#planA"]'));}catch(e){console.log("init err:",e.message)}});
 // Mobile nav collapse on scroll
-(function(){var ls=0,mx=0,th=0,nav=null;function onScroll(){if(!nav)nav=document.querySelector('nav');if(!nav||window.innerWidth>768)return;var st=window.pageYOffset||document.documentElement.scrollTop;if(st===ls)return;if(st>mx)mx=st;ls=st;var now=Date.now();if(now-th<60)return;th=now;if(st<=20){nav.classList.remove('collapsed');mx=st}else if(st>60&&st>=mx-5){nav.classList.add('collapsed')}else if(st<mx-35){nav.classList.remove('collapsed');mx=st}}window.addEventListener('scroll',onScroll,{passive:true});window._resetScroll=function(){ls=0;mx=0}})();</script>
+(function(){var ls=0,mx=0,th=0,nav=null;function onScroll(){if(window._modalOpen)return;if(!nav)nav=document.querySelector('nav');if(!nav||window.innerWidth>768)return;var st=window.pageYOffset||document.documentElement.scrollTop;if(st===ls)return;if(st>mx)mx=st;ls=st;var now=Date.now();if(now-th<60)return;th=now;if(st<=20){nav.classList.remove('collapsed');mx=st}else if(st>60&&st>=mx-5){nav.classList.add('collapsed')}else if(st<mx-35){nav.classList.remove('collapsed');mx=st}}window.addEventListener('scroll',onScroll,{passive:true});window._resetScroll=function(){ls=0;mx=0}})();</script>
 </body>
 </html>
