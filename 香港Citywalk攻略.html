@@ -1317,11 +1317,13 @@ function openModal(id){
 }
 function closeModal(){document.getElementById('modalOverlay').classList.remove('show');document.body.style.overflow='auto';document.body.style.position='';if(window._resetScroll)window._resetScroll()}
 
-// Page switching
+// Page switching with scroll position memory
+var pageScrolls={},currentPage='planA';
 function switchPage(id,el){
   document.querySelectorAll('nav a').forEach(function(a){a.classList.remove('active')});
   if(el)el.classList.add('active');
   var m=document.getElementById('mainContent');
+  pageScrolls[currentPage]=window.pageYOffset||document.documentElement.scrollTop;
   if(id==='planA')m.innerHTML=renderRoute('planA');
   else if(id==='planB3')m.innerHTML=renderRoute('planB3');
   else if(id==='planB1')m.innerHTML=renderRoute('planB1');
@@ -1330,12 +1332,14 @@ function switchPage(id,el){
   else if(id==='dirShamshuipo')m.innerHTML=renderDir(["合益泰小食","公和豆品厂","坤记糕品","汉发面家","文记车仔面","新香园坚记","Café Sausalito","顺流精品咖啡","文化屋杂货店","White Noise Records","阿里皮艺","DX设计馆","美荷楼","嘉顿山"],'深水埗店铺全览');
   else if(id==='dirOther')m.innerHTML=renderDir(["重庆大厦","新德里餐厅","K11 MUSEA","肥姐小食店","弥敦道金铺","中港城码头","港珠澳大桥口岸","Lonely Paisley","德丰打冷","周记油渣面","捌哥捌哥","月桥正宗越南汤粉","苏山鸡饭","缘潮味"],'尖沙咀·旺角·晚餐');
   else if(id==='info')m.innerHTML=renderInfo();
-  window.scrollTo(0,0);initGeo();
+  currentPage=id;
+  setTimeout(function(){window.scrollTo(0,pageScrolls[id]||0)},50);
+  initGeo();
 }
 
 // Init
 document.addEventListener("DOMContentLoaded",function(){try{switchPage('planA',document.querySelector('nav a[href="#planA"]'));}catch(e){console.log("init err:",e.message)}});
 // Mobile nav collapse on scroll
-(function(){var ls=0,th=0,nav=null;function onScroll(){if(!nav)nav=document.querySelector('nav');if(!nav||window.innerWidth>768)return;var st=window.pageYOffset||document.documentElement.scrollTop;if(st===ls)return;var down=st>ls;ls=st;var now=Date.now();if(now-th<50)return;th=now;if(st<=30)nav.classList.remove('collapsed');else if(down&&st>60)nav.classList.add('collapsed');else if(!down)nav.classList.remove('collapsed')}window.addEventListener('scroll',onScroll,{passive:true});window._resetScroll=function(){ls=0};})();</script>
+(function(){var ls=0,mx=0,th=0,nav=null;function onScroll(){if(!nav)nav=document.querySelector('nav');if(!nav||window.innerWidth>768)return;var st=window.pageYOffset||document.documentElement.scrollTop;if(st===ls)return;if(st>mx)mx=st;ls=st;var now=Date.now();if(now-th<60)return;th=now;if(st<=20){nav.classList.remove('collapsed');mx=st}else if(st>60&&st>=mx-5){nav.classList.add('collapsed')}else if(st<mx-35){nav.classList.remove('collapsed');mx=st}}window.addEventListener('scroll',onScroll,{passive:true});window._resetScroll=function(){ls=0;mx=0}})();</script>
 </body>
 </html>
