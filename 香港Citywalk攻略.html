@@ -62,7 +62,7 @@ h3{font-size:15px;font-weight:600;margin:20px 0 8px}
 .card-links{display:inline-flex;gap:4px;margin-left:8px}
 .card-links a{font-size:10px;padding:1px 6px;border-radius:10px;text-decoration:none;opacity:.7}
 .card-links a:hover{opacity:1}
-@media (max-width:768px){body{flex-direction:column}nav{position:relative;width:100%;height:auto;flex-direction:row;flex-wrap:wrap;padding:12px;gap:2px;overflow-x:auto}nav .logo,nav .section{display:none}nav a{padding:6px 12px;font-size:12px;border-left:none;border-bottom:2px solid transparent;white-space:nowrap}nav a.active{border-left:none;border-bottom-color:var(--accent)}main{margin-left:0;padding:20px 16px}.modal{max-width:95vw}}
+@media (max-width:768px){body{flex-direction:column}nav{position:sticky;top:0;width:100%;height:auto;flex-direction:row;flex-wrap:wrap;padding:8px 12px;gap:2px;overflow-x:auto;overflow-y:hidden;max-height:200px;background:#1e1e24;box-shadow:0 1px 4px rgba(0,0,0,.2)}nav .logo,nav .section{display:none}nav a{padding:6px 12px;font-size:12px;border-left:none;border-bottom:2px solid transparent;white-space:nowrap;border-radius:4px;}nav a.active{border-left:none;border-bottom-color:var(--accent)}nav.collapsed{max-height:36px;padding:3px 8px;flex-wrap:nowrap;overflow:hidden}nav.collapsed a{display:none}nav.collapsed a.active{display:inline-block;font-size:12px;padding:3px 10px}nav.collapsed::after{content:' ▾';font-size:12px;color:#999;padding:3px 4px;cursor:pointer;white-space:nowrap;flex-shrink:0}main{margin-left:0;padding:20px 16px}.modal{max-width:95vw}}
 </style>
 </head>
 <body>
@@ -1313,9 +1313,9 @@ function openModal(id){
   var d=getDist(id),distHtml=d!==null?'<span>📏 距你 '+fmtDist(d)+'</span>':'';
   var imgs=s.imgs?s.imgs.map(function(u){return'<img src="'+u+'" alt="'+id+'" onerror="this.style.display=\'none\'">'}).join(''):'';
   document.getElementById('modalBox').innerHTML='<div class="body"><button class="close" onclick="closeModal()">✕</button><h3>'+id+' <span class="tag '+tags[s.tag]+'">'+s.cuisine+'</span></h3><div class="info-row"><span>📍 '+s.addr+'</span><span>🕐 '+s.time+'</span><span>💰 '+s.price+'</span>'+distHtml+'</div><div class="info-row"><span>🪑 空调：'+s.ac+'</span><span>💺 可坐：'+s.sit+'</span></div><div class="desc">'+s.desc+'</div>'+(s.must?'<div class="must-try">✨ 必试：'+s.must+'</div>':'')+(imgs?'<div class="gallery">'+imgs+'</div>':'')+platLinks(id)+'</div>';
-  document.getElementById('modalOverlay').classList.add('show');document.body.style.overflow='hidden';
+  document.getElementById('modalOverlay').classList.add('show');document.body.style.overflow='hidden';document.body.style.position='fixed';document.body.style.width='100%';
 }
-function closeModal(){document.getElementById('modalOverlay').classList.remove('show');document.body.style.overflow=''}
+function closeModal(){document.getElementById('modalOverlay').classList.remove('show');document.body.style.overflow='auto';document.body.style.position='';if(window._resetScroll)window._resetScroll()}
 
 // Page switching
 function switchPage(id,el){
@@ -1335,6 +1335,7 @@ function switchPage(id,el){
 
 // Init
 document.addEventListener("DOMContentLoaded",function(){try{switchPage('planA',document.querySelector('nav a[href="#planA"]'));}catch(e){console.log("init err:",e.message)}});
-</script>
+// Mobile nav collapse on scroll
+(function(){var ls=0,th=0,nav=null;function onScroll(){if(!nav)nav=document.querySelector('nav');if(!nav||window.innerWidth>768)return;var st=window.pageYOffset||document.documentElement.scrollTop;if(st===ls)return;var down=st>ls;ls=st;var now=Date.now();if(now-th<50)return;th=now;if(st<=30)nav.classList.remove('collapsed');else if(down&&st>60)nav.classList.add('collapsed');else if(!down)nav.classList.remove('collapsed')}window.addEventListener('scroll',onScroll,{passive:true});window._resetScroll=function(){ls=0};})();</script>
 </body>
 </html>
