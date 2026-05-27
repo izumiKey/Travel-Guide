@@ -568,18 +568,32 @@ const shops = {
     "lat": 22.314,
     "lng": 113.949
   },
-  "Lonely Paisley": {
+  
+  "良记印尼": {
     "tag": "dinner",
-    "cuisine": "土耳其菜·中东",
-    "addr": "深水埗",
-    "time": "18:00-22:30",
-    "price": "HK$100-150",
+    "cuisine": "印尼菜",
+    "addr": "深水埗基隆街216号地铺",
+    "time": "11:00-21:00",
+    "price": "HK$51-100",
+    "ac": "⚠️",
+    "sit": "⚠️（4卡位）",
+    "desc": "深水埗口碑印尼小馆。三层黄姜饭、巴东牛肉、沙嗲串烧地道正宗。深受居港印尼人认可。饭点可能等位。",
+    "must": "三层黄姜饭、巴东牛肉、沙嗲串烧",
+    "lat": 22.331,
+    "lng": 114.162
+  },
+  "土耳其餐廳": {
+    "tag": "dinner",
+    "cuisine": "土耳其菜",
+    "addr": "深水埗九江街148A号地铺",
+    "time": "11:00-22:00",
+    "price": "HK$51-100",
     "ac": "✅",
     "sit": "✅",
-    "desc": "深水埗隐藏异国风情餐厅，装修像走进伊斯坦布尔。土耳其烤肉卷、中东香料饭。嘉顿山下山步行直达。",
-    "must": "土耳其烤肉卷、中东香料饭",
-    "lat": 22.33,
-    "lng": 114.163
+    "desc": "深水埗平价土耳其餐厅。转转烤肉配薯条，热茶无限添饮。2025年确认营业。嘉顿山下山步行约10分钟。",
+    "must": "转转烤肉、薯条、土耳其茶",
+    "lat": 22.3305,
+    "lng": 114.161
   },
   "德丰打冷": {
     "tag": "dinner",
@@ -825,7 +839,7 @@ const routes = {
   },
   "planB3": {
     "title": "Plan B-3 ⭐ 印度菜+双街区(无K11)",
-    "sub": "🚢 船到中港城 | 🚌 金巴返 | 🍜 午餐重庆大厦印度菜 | 🍽️ 晚餐Lonely Paisley(土耳其)",
+    "sub": "🚢 船到中港城 | 🚌 金巴返 | 🍜 午餐重庆大厦印度菜 | 🍽️ 晚餐土耳其餐廳(土耳其)",
     "items": [
       {
         "t": "10:00",
@@ -967,9 +981,9 @@ const routes = {
       },
       {
         "t": "19:00",
-        "w": "🍽️ 晚餐 Lonely Paisley 🇹🇷",
+        "w": "🍽️ 晚餐 土耳其餐廳 🇹🇷",
         "d": "土耳其烤肉卷+中东香料饭",
-        "shop": "Lonely Paisley"
+        "shop": "土耳其餐廳"
       },
       {
         "t": "20:00",
@@ -1303,7 +1317,7 @@ function renderInfo(){
 '<div class="card" style="cursor:default"><h3>🚌 返程交通</h3><p style="font-size:13px">港珠澳大桥香港口岸→珠海<br>金巴24小时运营，日间HK$65/人，约40分钟<br>东涌站→B6巴士(15分钟)→口岸</p></div>'+
 '<div class="card" style="cursor:default"><h3>💰 预算(每人HKD)</h3><p style="font-size:13px">船票~200+金巴65+午餐80-150+肥姐40+咖啡120+小食60+晚餐30-150+地铁50=<b>~600-800</b></p></div>'+
 '<div class="card" style="cursor:default"><h3>☀️ 5月底天气</h3><p style="font-size:13px">28-33°C湿热。必备：透气快干衣、舒适鞋、遮阳帽、防晒霜、折叠伞、小风扇、充电宝<br>八达通~HK$150 | 现金HK$300-500(老店只收现金)</p></div>'+
-'<div class="card" style="cursor:default"><h3>📍 位置预设</h3><p style="font-size:13px;margin-bottom:8px">GPS不可用时，点击下方按钮模拟位置查看距离：</p>'+'<button onclick="setLocation(22.3002,114.1678,\'中港城码头\');return false" style="margin:4px 6px 4px 0;padding:6px 14px;border:1px solid #ddd;border-radius:16px;background:#f5f5f5;cursor:pointer;font-size:12px">🚢 中港城码头</button>'+'<button onclick="setLocation(22.3180,114.1710,\'旺角\');return false" style="margin:4px 6px 4px 0;padding:6px 14px;border:1px solid #ddd;border-radius:16px;background:#f5f5f5;cursor:pointer;font-size:12px">🛍️ 旺角弥敦道</button>'+'<button onclick="setLocation(22.3300,114.1630,\'深水埗\');return false" style="margin:4px 6px 4px 0;padding:6px 14px;border:1px solid #ddd;border-radius:16px;background:#f5f5f5;cursor:pointer;font-size:12px">🏘️ 深水埗</button>'+'<button onclick="setLocation(22.2964,114.1728,\'尖沙咀\');return false" style="margin:4px 6px 4px 0;padding:6px 14px;border:1px solid #ddd;border-radius:16px;background:#f5f5f5;cursor:pointer;font-size:12px">🌃 尖沙咀</button>'+'<button onclick="userPos=null;distCache={};refreshDist();return false" style="margin:4px 6px 4px 0;padding:6px 14px;border:1px solid #fcc;border-radius:16px;background:#fff5f5;cursor:pointer;font-size:12px">✕ 清除位置</button></div>'+'<div class="card" style="cursor:default"><h3>🍽️ 晚餐备选</h3><p style="font-size:13px">德丰打冷(潮州)、新香园(蛋牛治)、周记油渣面、Lonely Paisley(土耳其)、捌哥捌哥(马来西亚)、月桥(越南)、苏山鸡饭(新加坡)、缘潮味(潮州粉面)</p></div>';
+'<div class="card" style="cursor:default"><h3>📍 位置预设</h3><p style="font-size:13px;margin-bottom:8px">GPS不可用时，点击下方按钮模拟位置查看距离：</p>'+'<button onclick="setLocation(22.3002,114.1678,\'中港城码头\');return false" style="margin:4px 6px 4px 0;padding:6px 14px;border:1px solid #ddd;border-radius:16px;background:#f5f5f5;cursor:pointer;font-size:12px">🚢 中港城码头</button>'+'<button onclick="setLocation(22.3180,114.1710,\'旺角\');return false" style="margin:4px 6px 4px 0;padding:6px 14px;border:1px solid #ddd;border-radius:16px;background:#f5f5f5;cursor:pointer;font-size:12px">🛍️ 旺角弥敦道</button>'+'<button onclick="setLocation(22.3300,114.1630,\'深水埗\');return false" style="margin:4px 6px 4px 0;padding:6px 14px;border:1px solid #ddd;border-radius:16px;background:#f5f5f5;cursor:pointer;font-size:12px">🏘️ 深水埗</button>'+'<button onclick="setLocation(22.2964,114.1728,\'尖沙咀\');return false" style="margin:4px 6px 4px 0;padding:6px 14px;border:1px solid #ddd;border-radius:16px;background:#f5f5f5;cursor:pointer;font-size:12px">🌃 尖沙咀</button>'+'<button onclick="userPos=null;distCache={};refreshDist();return false" style="margin:4px 6px 4px 0;padding:6px 14px;border:1px solid #fcc;border-radius:16px;background:#fff5f5;cursor:pointer;font-size:12px">✕ 清除位置</button></div>'+'<div class="card" style="cursor:default"><h3>🍽️ 晚餐备选</h3><p style="font-size:13px">德丰打冷(潮州)、新香园(蛋牛治)、周记油渣面、土耳其餐廳(土耳其)、捌哥捌哥(马来西亚)、月桥(越南)、苏山鸡饭(新加坡)、缘潮味(潮州粉面)</p></div>';
 }
 
 // Modal
@@ -1330,7 +1344,7 @@ function switchPage(id,el){
   else if(id==='planB2')m.innerHTML=renderRoute('planB2');
   else if(id==='dirKowloon')m.innerHTML=renderDir(["金泰沙冰","彩虹","隆姐泰国美食馆","BTS美食站","黄珍珍泰国菜馆","金宝泰国菜馆","昭拍耶","泰金国","泰发泰国餐厅","大和堂","南角","地茂馆甜品","合成糖水","清真牛肉馆","九龙寨城光影展","九龙寨城公园"],'九龙城店铺全览');
   else if(id==='dirShamshuipo')m.innerHTML=renderDir(["合益泰小食","公和豆品厂","坤记糕品","汉发面家","文记车仔面","新香园坚记","Café Sausalito","顺流精品咖啡","文化屋杂货店","White Noise Records","阿里皮艺","DX设计馆","美荷楼","嘉顿山"],'深水埗店铺全览');
-  else if(id==='dirOther')m.innerHTML=renderDir(["重庆大厦","新德里餐厅","K11 MUSEA","肥姐小食店","弥敦道金铺","中港城码头","港珠澳大桥口岸","Lonely Paisley","德丰打冷","周记油渣面","捌哥捌哥","月桥正宗越南汤粉","苏山鸡饭","缘潮味"],'尖沙咀·旺角·晚餐');
+  else if(id==='dirOther')m.innerHTML=renderDir(["重庆大厦","新德里餐厅","K11 MUSEA","肥姐小食店","弥敦道金铺","中港城码头","港珠澳大桥口岸","土耳其餐廳","德丰打冷","周记油渣面","捌哥捌哥","月桥正宗越南汤粉","苏山鸡饭","缘潮味"],'尖沙咀·旺角·晚餐');
   else if(id==='info')m.innerHTML=renderInfo();
   currentPage=id;
   setTimeout(function(){window.scrollTo(0,pageScrolls[id]||0);setTimeout(refreshAllChecks,100)},50);
