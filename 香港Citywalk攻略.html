@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>香港Citywalk一日游攻略 | 珠海出发</title>
+<title>九龙城·土瓜湾深度游 | 香港Citywalk</title>
 <style>
 :root{--bg:#faf9f6;--card:#fff;--text:#2c2c2c;--muted:#888;--accent:#e65c41;--border:#e8e5e0;--shadow:0 1px 3px rgba(0,0,0,.06);--radius:10px;--nav-w:220px}
 *{margin:0;padding:0;box-sizing:border-box}
@@ -66,26 +66,27 @@ h3{font-size:15px;font-weight:600;margin:20px 0 8px}
 </style>
 </head>
 <body>
+
 <nav>
-<div class="logo">🇭🇰 香港Citywalk<span>攻略</span></div>
-<div class="section">路线方案</div>
-<a href="#planA" class="active" onclick="switchPage('planA',this)">Plan A · 泰菜双街区</a>
-<a href="#planB3" onclick="switchPage('planB3',this)">Plan B-3 · 印度双街区 ⭐</a>
-<a href="#planB1" onclick="switchPage('planB1',this)">Plan B-1 · 印度+深水埗</a>
-<a href="#planB2" onclick="switchPage('planB2',this)">Plan B-2 · 印度+九龙城</a>
+<div class="logo">🇭🇰 九龙城·土瓜湾<span>深度游</span></div>
+<div class="section">路线</div>
+<a href="#main" class="active" onclick="switchPage('main',this)">Plan A · 港澳码头到港</a>
+<a href="#planB" onclick="switchPage('planB',this)">Plan B · 重庆大厦印度菜</a>
 <div class="section">店铺目录</div>
 <a href="#dirKowloon" onclick="switchPage('dirKowloon',this)">九龙城店铺全览</a>
 <a href="#dirShamshuipo" onclick="switchPage('dirShamshuipo',this)">深水埗店铺全览</a>
-<a href="#dirOther" onclick="switchPage('dirOther',this)">尖沙咀·旺角·晚餐</a>
+<a href="#dirSYP" onclick="switchPage('dirSYP',this)">西营盘景点全览</a>
+<a href="#dirTKW" onclick="switchPage('dirTKW',this)">土瓜湾店铺全览</a>
+<a href="#dirOther" onclick="switchPage('dirOther',this)">交通·晚餐</a>
 <div class="section">实用信息</div>
 <a href="#info" onclick="switchPage('info',this)">交通·预算·天气</a>
 </nav>
+
 <main id="mainContent"></main>
 <div class="modal-overlay" id="modalOverlay" onclick="if(event.target===this)closeModal()">
 <div class="modal" id="modalBox"></div>
-</div>
 
-<script>window.onerror=function(m,s,l,c,e){console.log("ERR:",m,"at line",l);var d=document.getElementById("errlog");if(d)d.textContent+=(d.textContent?" | ":"")+m;return false};
+<script>window.onerror=function(m,s,l,c,e){console.log("ERR:",m,"at line",l);return false};
 const shops = {
   "金泰沙冰": {
     "tag": "food",
@@ -110,6 +111,19 @@ const shops = {
     "sit": "❌",
     "desc": "专做泰式甜品的隐世小店，斑兰流心包是招牌——面包松软、内馅是浓郁斑兰卡仕达酱，一口爆浆。",
     "must": "斑兰流心包、椰汁西米糕",
+    "lat": 22.3298,
+    "lng": 114.19
+  },
+  "泰圆丰": {
+    "tag": "shop",
+    "cuisine": "泰国杂货",
+    "addr": "九龙城城南道",
+    "time": "10:00-20:00",
+    "price": "丰俭由人",
+    "ac": "⚠️",
+    "sit": "❌",
+    "desc": "九龙城小泰国里的地道泰式杂货店。泰式酱料、零食、即食面、香料一应俱全，逛完泰菜馆顺路扫货带手信。",
+    "must": "泰式酱料、泰国零食、即食面",
     "lat": 22.3298,
     "lng": 114.19
   },
@@ -273,11 +287,11 @@ const shops = {
     "tag": "spot",
     "cuisine": "景点·展览",
     "addr": "九龙寨城公园衙门",
-    "time": "09:00-19:00(夏季)",
+    "time": "09:00-19:00",
     "price": "免费",
     "ac": "⚠️",
     "sit": "⚠️",
-    "desc": "2025.5.24开幕！电影《九龙城寨之围城》场景展，还原七记冰室、龙城发廊等8大场景。免费，现场领筹。",
+    "desc": "电影《九龙城寨之围城》场景展，还原七记冰室、龙城发廊等8大场景。免费，现场领筹。",
     "must": "七记冰室、龙城发廊、天台投影",
     "lat": 22.3321,
     "lng": 114.1902
@@ -294,6 +308,97 @@ const shops = {
     "must": "衙门、南门遗迹",
     "lat": 22.3321,
     "lng": 114.1902
+  },
+  "永香冰室": {
+    "tag": "food",
+    "cuisine": "港式·怀旧冰厅",
+    "addr": "土瓜湾炮仗街29号地下",
+    "time": "8:00-20:00",
+    "price": "HK$25-45",
+    "ac": "⚠️",
+    "sit": "✅",
+    "desc": "香港硕果仅存的60年传统冰厅之一。多士、通粉、奶茶，时光凝固在半个世纪前。",
+    "must": "西多士、奶茶、通粉",
+    "lat": 22.3225,
+    "lng": 114.1905
+  },
+  "夕拾 Jiksap": {
+    "tag": "shop",
+    "cuisine": "旧物收藏·怀旧",
+    "addr": "土瓜湾九龙城道90号安乐工厂大厦A座9楼",
+    "time": "11:00-19:00（周二休）",
+    "price": "HK$50-500",
+    "ac": "✅",
+    "sit": "⚠️",
+    "desc": "工厦9楼的秘密旧物仓！店名取自鲁迅《朝花夕拾》。珍藏旧招牌、50年代香港生活照、黑胶唱片、电影海报、旧玩具、70年代毕业证书。40年老店。",
+    "must": "旧招牌、黑胶唱片、老照片、旧玩具",
+    "lat": 22.322,
+    "lng": 114.191
+  },
+  "牛棚艺术村": {
+    "tag": "spot",
+    "cuisine": "景点·历史建筑",
+    "addr": "土瓜湾马头角道63号",
+    "time": "10:00-20:00",
+    "price": "免费",
+    "ac": "⚠️",
+    "sit": "⚠️",
+    "desc": "1908年建成的红砖屠房活化艺术村。中庭5座红砖平房、牲口饮水槽遗迹、铸铁装饰，20+艺术团体驻场。",
+    "must": "红砖中庭、喂饲槽遗迹、艺术工作室",
+    "lat": 22.3215,
+    "lng": 114.1918
+  },
+  "十三街": {
+    "tag": "spot",
+    "cuisine": "景点·老街",
+    "addr": "土瓜湾龙图街/凤仪街一带",
+    "time": "全天",
+    "price": "免费",
+    "ac": "❌",
+    "sit": "❌",
+    "desc": "11条瑞兽街名+80多幢60年唐楼，靛蓝、明黄、桃红撞色。龙图街×凤仪街交叉口仰拍最佳。",
+    "must": "龙图街×凤仪街仰拍、瑞兽街牌",
+    "lat": 22.3205,
+    "lng": 114.192
+  },
+  "呼吸星球": {
+    "tag": "cafe",
+    "cuisine": "日式·怀旧Cafe",
+    "addr": "土瓜湾马头角道91号地铺",
+    "time": "12:30-22:00（周三四周休）",
+    "price": "HK$80-150",
+    "ac": "✅",
+    "sit": "✅",
+    "desc": "保留60年代白宫冰室古董摆设的昭和风咖啡馆。石垣牛定食、手冲咖啡、蜜瓜麻糬窝夫。只收现金。",
+    "must": "石垣牛定食、手冲咖啡、蜜瓜麻糬窝夫",
+    "lat": 22.321,
+    "lng": 114.1915
+  },
+  "海心公园": {
+    "tag": "spot",
+    "cuisine": "景点·海滨",
+    "addr": "土瓜湾旭日街",
+    "time": "全天",
+    "price": "免费",
+    "ac": "❌",
+    "sit": "⚠️",
+    "desc": "土瓜湾海滨长廊。前身是海心庙小岛，1972年填海后与陆地相连。傍晚可看维港夕阳，歇脚吹海风。",
+    "must": "海心亭、维港夕阳",
+    "lat": 22.319,
+    "lng": 114.193
+  },
+  "鸭寮街": {
+    "tag": "shop",
+    "cuisine": "二手市场·玩具",
+    "addr": "深水埗鸭寮街",
+    "time": "12:00-19:00",
+    "price": "HK$20-500",
+    "ac": "❌",
+    "sit": "❌",
+    "desc": "香港最著名二手街。古董电子、黑胶唱片、二手音响、老式相机、旧玩具应有尽有。",
+    "must": "二手音响、黑胶唱片、旧相机、古董电子",
+    "lat": 22.3305,
+    "lng": 114.1625
   },
   "合益泰小食": {
     "tag": "food",
@@ -338,7 +443,7 @@ const shops = {
     "tag": "food",
     "cuisine": "港式·面家",
     "addr": "大南街192号",
-    "time": "周一至六07:30-17:30(周日休)",
+    "time": "周一至六07:30-17:30",
     "price": "HK$40-60",
     "ac": "✅",
     "sit": "✅",
@@ -368,7 +473,7 @@ const shops = {
     "price": "HK$25-40",
     "ac": "⚠️",
     "sit": "✅",
-    "desc": "深水埗街坊茶餐厅，蛋牛治是镇店之宝——炒蛋滑嫩+碎牛肉咸香，配红豆冰。翻台快不排队。",
+    "desc": "深水埗街坊茶餐厅，蛋牛治是镇店之宝——炒蛋滑嫩+碎牛肉咸香，配红豆冰。",
     "must": "蛋牛治、红豆冰",
     "lat": 22.3295,
     "lng": 114.1625
@@ -407,7 +512,7 @@ const shops = {
     "price": "HK$50-300",
     "ac": "✅",
     "sit": "❌",
-    "desc": "东京原宿首间海外分店！昭和古着、怀旧玩具、复古霓虹招牌+投币游戏街机，寻宝感满分。",
+    "desc": "东京原宿首间海外分店！昭和古着、怀旧玩具、复古霓虹招牌+投币游戏街机。",
     "must": "昭和玩具、佐藤象公仔",
     "lat": 22.331,
     "lng": 114.1635
@@ -416,7 +521,7 @@ const shops = {
     "tag": "shop",
     "cuisine": "唱片·黑胶",
     "addr": "大南街199号地下",
-    "time": "12:00-20:00(周日-19:00)",
+    "time": "12:00-20:00",
     "price": "HK$100-400",
     "ac": "✅",
     "sit": "❌",
@@ -442,7 +547,7 @@ const shops = {
     "tag": "shop",
     "cuisine": "设计·展览",
     "addr": "通州街280号",
-    "time": "2024年底新开",
+    "time": "12:00-19:00",
     "price": "免费",
     "ac": "✅",
     "sit": "⚠️",
@@ -455,7 +560,7 @@ const shops = {
     "tag": "spot",
     "cuisine": "景点·博物馆",
     "addr": "石硖尾巴域街70号",
-    "time": "周二至日10:00-18:00(周一休)",
+    "time": "周二至日10:00-18:00",
     "price": "免费",
     "ac": "✅",
     "sit": "✅",
@@ -468,12 +573,12 @@ const shops = {
     "tag": "spot",
     "cuisine": "景点·山景",
     "addr": "美荷楼旁晨运径上山",
-    "time": "全天（建议日落前）",
+    "time": "全天",
     "price": "免费",
     "ac": "❌",
     "sit": "⚠️",
     "desc": "90米高，10分钟登顶。俯瞰深水埗旧区+ICC。日落金色光线洒在老区楼宇上。⚠️山上无灯无围栏！",
-    "must": "日落城市全景、嘉顿面包厂霓虹灯牌",
+    "must": "日落城市全景",
     "lat": 22.335,
     "lng": 114.163
   },
@@ -498,7 +603,7 @@ const shops = {
     "price": "HK$80-150",
     "ac": "✅",
     "sit": "✅",
-    "desc": "Lonely Planet推荐！最老牌印度餐厅，咖喱牛肉浓郁、黄油鸡嫩滑。门口极隐蔽，跟楼下员工走。",
+    "desc": "Lonely Planet推荐！最老牌印度餐厅，咖喱牛肉浓郁、黄油鸡嫩滑。⚠️12点才开门",
     "must": "咖喱牛肉、黄油鸡、蒜蓉烤饼、芒果Lassi",
     "lat": 22.2964,
     "lng": 114.1728
@@ -550,7 +655,7 @@ const shops = {
     "price": "—",
     "ac": "✅",
     "sit": "✅",
-    "desc": "珠海九洲港↔香港中港城码头，航程约70分钟。微信小程序「九洲客运港」购票。提前40分钟到码头。",
+    "desc": "珠海九洲港↔香港中港城码头，航程约70分钟。微信小程序「九洲客运港」购票。",
     "must": "微信小程序购票",
     "lat": 22.3002,
     "lng": 114.1678
@@ -563,24 +668,10 @@ const shops = {
     "price": "金巴HK$65",
     "ac": "✅",
     "sit": "✅",
-    "desc": "返程口岸。东涌站坐B6巴士约15分钟直达。金巴24小时，约40分钟到珠海。",
+    "desc": "返程口岸。东涌站坐B6巴士约15分钟直达。金巴24小时。",
     "must": "B6巴士(东涌→口岸)、金巴",
     "lat": 22.314,
     "lng": 113.949
-  },
-  
-  "良记印尼": {
-    "tag": "dinner",
-    "cuisine": "印尼菜",
-    "addr": "深水埗基隆街216号地铺",
-    "time": "11:00-21:00",
-    "price": "HK$51-100",
-    "ac": "⚠️",
-    "sit": "⚠️（4卡位）",
-    "desc": "深水埗口碑印尼小馆。三层黄姜饭、巴东牛肉、沙嗲串烧地道正宗。深受居港印尼人认可。饭点可能等位。",
-    "must": "三层黄姜饭、巴东牛肉、沙嗲串烧",
-    "lat": 22.331,
-    "lng": 114.162
   },
   "土耳其餐廳": {
     "tag": "dinner",
@@ -590,10 +681,23 @@ const shops = {
     "price": "HK$51-100",
     "ac": "✅",
     "sit": "✅",
-    "desc": "深水埗平价土耳其餐厅。转转烤肉配薯条，热茶无限添饮。2025年确认营业。嘉顿山下山步行约10分钟。",
+    "desc": "深水埗平价土耳其餐厅。转转烤肉配薯条，热茶无限添饮。2025年确认营业。",
     "must": "转转烤肉、薯条、土耳其茶",
     "lat": 22.3305,
     "lng": 114.161
+  },
+  "良记印尼": {
+    "tag": "dinner",
+    "cuisine": "印尼菜",
+    "addr": "深水埗基隆街216号地铺",
+    "time": "11:00-21:00",
+    "price": "HK$51-100",
+    "ac": "⚠️",
+    "sit": "⚠️",
+    "desc": "深水埗口碑印尼小馆。三层黄姜饭、巴东牛肉、沙嗲串烧地道正宗。",
+    "must": "三层黄姜饭、巴东牛肉、沙嗲串烧",
+    "lat": 22.331,
+    "lng": 114.162
   },
   "德丰打冷": {
     "tag": "dinner",
@@ -616,7 +720,7 @@ const shops = {
     "price": "HK$30-45",
     "ac": "⚠️",
     "sit": "✅",
-    "desc": "油渣面——香港濒临失传的平民美食，用猪油渣熬制汤面，全港没剩几家。分量刚好。",
+    "desc": "油渣面——香港濒临失传的平民美食，用猪油渣熬制汤面，全港没剩几家。",
     "must": "油渣面",
     "lat": 22.3305,
     "lng": 114.1625
@@ -642,7 +746,7 @@ const shops = {
     "price": "HK$48-70",
     "ac": "✅",
     "sit": "✅",
-    "desc": "越南人主理正宗越南粉。生牛河汤底清澈鲜甜，下午茶时段$48超大碗。清淡解腻。",
+    "desc": "越南人主理正宗越南粉。生牛河汤底清澈鲜甜，下午茶时段$48超大碗。",
     "must": "生牛河、越南春卷",
     "lat": 22.325,
     "lng": 114.169
@@ -655,7 +759,7 @@ const shops = {
     "price": "HK$100-160",
     "ac": "✅",
     "sit": "✅",
-    "desc": "火焰酱香椰子鸡窝上桌点火打卡。白胡椒排骨茶、星洲叻沙也是招牌。⚠️可能排队。",
+    "desc": "火焰酱香椰子鸡窝上桌点火打卡。白胡椒排骨茶、星洲叻沙也是招牌。",
     "must": "火焰椰子鸡窝、白胡椒排骨茶、星洲叻沙",
     "lat": 22.331,
     "lng": 114.1605
@@ -672,576 +776,226 @@ const shops = {
     "must": "潮州鱼蛋粉、云吞面、牛杂面",
     "lat": 22.33,
     "lng": 114.1625
+  },
+  "艺里坊壁画街": {
+    "tag": "spot",
+    "cuisine": "景点·街头艺术",
+    "addr": "西营盘忠正街/奇灵里/石栈里",
+    "time": "全天",
+    "price": "免费",
+    "ac": "❌",
+    "sit": "❌",
+    "desc": "港版山城里的街头艺术区！16幅大型壁画分布在忠正街、奇灵里、石栈里三条小巷——彩虹楼梯是打卡必到，还有3D立体墙画、涂鸦墙、马赛克拼贴。上午光线最佳，人少好拍。",
+    "must": "彩虹楼梯、3D立体墙画、马赛克拼贴墙",
+    "lat": 22.2862,
+    "lng": 114.143
+  },
+  "西源里福德宫": {
+    "tag": "spot",
+    "cuisine": "景点·特色神坛",
+    "addr": "西营盘西源里",
+    "time": "全天",
+    "price": "免费",
+    "ac": "❌",
+    "sit": "❌",
+    "desc": "全港唯一「招财猫神坛」！街坊自发供奉招财猫公仔取代传统土地公，几十只大小招财猫挤满神坛，场面壮观又可爱。街坊还会上供猫罐头，极具香港市井创意。",
+    "must": "招财猫群像、猫罐头供品",
+    "lat": 22.2865,
+    "lng": 114.1425
+  },
+  "东边街": {
+    "tag": "spot",
+    "cuisine": "景点·山城斜坡",
+    "addr": "西营盘东边街",
+    "time": "全天",
+    "price": "免费",
+    "ac": "❌",
+    "sit": "❌",
+    "desc": "港版山城最魔幻的斜坡路段。45度陡坡两旁是唐楼民居，等一辆红色taxi从坡顶冲下来——电影感拉满的经典构图画框。上午顺光，坡顶往下拍最佳。",
+    "must": "红色taxi斜坡构图、唐楼+坡道纵深",
+    "lat": 22.2865,
+    "lng": 114.1438
+  },
+  "正街": {
+    "tag": "spot",
+    "cuisine": "景点·山海街景",
+    "addr": "西营盘正街",
+    "time": "全天",
+    "price": "免费",
+    "ac": "❌",
+    "sit": "❌",
+    "desc": "西营盘最经典的打卡位——一条直路从山腰直插维多利亚港，站在正街高处往下望，路尽头就是大海和九龙天际线。与东边街形成「一直一弯」的山城双绝。下午顺光海更蓝。",
+    "must": "正街直通大海构图、九龙天际线",
+    "lat": 22.286,
+    "lng": 114.142
+  },
+  "余乐里百年唐楼": {
+    "tag": "spot",
+    "cuisine": "景点·历史建筑",
+    "addr": "西营盘余乐里",
+    "time": "全天",
+    "price": "免费",
+    "ac": "❌",
+    "sit": "❌",
+    "desc": "隐匿于山城窄巷的百年唐楼群。法式落地门窗、拱形砖砌结构、斑驳水磨石外墙——是香港现存最完整的战前唐楼街区之一。15分钟可逛完，光影透过拱廊打在旧砖墙上极美。",
+    "must": "法式落地门窗、拱形砖廊光影、水磨石外墙",
+    "lat": 22.285,
+    "lng": 114.144
+  },
+  "NOC Coffee Co.": {
+    "tag": "cafe",
+    "cuisine": "咖啡·轻食",
+    "addr": "西营盘德辅道西321号瑧璈地下4号舖",
+    "time": "08:00-18:00",
+    "price": "HK$80-150",
+    "ac": "✅",
+    "sit": "✅",
+    "desc": "咖啡冠军创办，被称为「香港版蓝瓶」。黑白木纹极简装潢，手绘森林壁画+隐蔽小花园，是西营盘最具代表性的精品咖啡店。咖啡、环境、食物三者最均衡之选。",
+    "must": "Flat White、Avocado Smash（牛油果酸种面包配菲达芝士）",
+    "lat": 22.2878,
+    "lng": 114.1415
+  },
+  "不籽是咖啡": {
+    "tag": "cafe",
+    "cuisine": "咖啡·Fusion",
+    "addr": "西营盘忠正街8号艺里坊1号地下1号舖",
+    "time": "12:00-22:00",
+    "price": "HK$100-200",
+    "ac": "✅",
+    "sit": "✅",
+    "desc": "艺里坊壁画区入口的波希米亚风Cafe！门口藤椅配图腾咕臣超好拍。咖啡豆由世界杯测大赛冠军烘焙师调制，龙虾汤乌冬用金属茶壶上桌打卡必点。⚠️12:00才开门",
+    "must": "龙虾汤配牛油果大虾稻庭乌冬、椰爷的咖啡（椰奶拿铁）",
+    "lat": 22.2862,
+    "lng": 114.143
+  },
+  "Coffee by Zion": {
+    "tag": "cafe",
+    "cuisine": "咖啡·轻食",
+    "addr": "西营盘第一街83号地下1号舖",
+    "time": "08:00-18:00",
+    "price": "HK$80-150",
+    "ac": "✅",
+    "sit": "✅",
+    "desc": "设户外座位可望西营盘街景，最有街坊温度的一间。工业风设计，港大学生聚脚点。杂莓乳酪沙冰燕麦早餐人气之选。早上8点开门，适合Plan B早餐。",
+    "must": "杂莓乳酪沙冰燕麦早餐、班尼迪克蛋、抹茶红豆可颂窝夫",
+    "lat": 22.2865,
+    "lng": 114.142
+  },
+  "So High Coffee Bar": {
+    "tag": "cafe",
+    "cuisine": "咖啡·怀旧",
+    "addr": "西营盘高街49号地舖",
+    "time": "10:00-18:00",
+    "price": "HK$60-100",
+    "ac": "✅",
+    "sit": "✅",
+    "desc": "复古中式瓷器花纹杯碟 + 怀旧图案地砖，浓郁旧香港风情。咖啡甜品用小花瓣装饰，外国人客居多。高街一带最有个性的独立咖啡馆，与连锁品牌完全不同的体验。",
+    "must": "手冲咖啡、精致甜品（花瓣装饰）",
+    "lat": 22.2855,
+    "lng": 114.1435
+  },
+  "BakeOut 彼之丘": {
+    "tag": "food",
+    "cuisine": "烘焙·三文治",
+    "addr": "西营盘皇后大道西216号地舖",
+    "time": "08:00-20:00",
+    "price": "HK$30-60",
+    "ac": "⚠️",
+    "sit": "⚠️",
+    "desc": "每日手作面包限量100件！超过15款三文治即叫即製。招牌日本豚肉炒面热狗——炒面+热狗的淀粉×淀粉创意组合，全港独有。外带友好，适合边走边吃。",
+    "must": "日本豚肉炒面热狗(HK$44)、吉列炸虾三文治",
+    "lat": 22.2868,
+    "lng": 114.1415
+  },
+  "英记面家": {
+    "tag": "food",
+    "cuisine": "港式·米芝莲",
+    "addr": "西营盘高街32号地舖",
+    "time": "11:00-21:00",
+    "price": "HK$40-60",
+    "ac": "✅",
+    "sit": "✅",
+    "desc": "米芝莲必比登推介！自家製叉烧汤面驰名，方皓玟极力推荐。传统港式面家，汤底清甜叉烧焦香，是西营盘街坊从小吃到大的味道。11点开门正好赶上午餐。",
+    "must": "自家製叉烧汤面、炸云吞",
+    "lat": 22.2855,
+    "lng": 114.143
   }
 };
 const routes = {
-  "planA": {
-    "title": "Plan A · 九龙城泰国菜 + 深水埗双街区",
-    "sub": "🚢 去程船到中港城 | 🚌 返程金巴 | 🍜 午餐泰国菜 | 🍽️ 晚餐德丰打冷(潮州菜)",
+  "planB": {
+    "title": "Plan B · 西营盘 + 印度菜 + 九龙城·土瓜湾",
+    "sub": "🚢 去程船到港澳码头 | 🔵 西营盘山城 | 🍛 重庆大厦印度午餐 | 👩 你🚄西九龙",
     "items": [
-      {
-        "t": "10:00",
-        "w": "🚢 珠海九洲港出发",
-        "d": "船程约70分钟，建议提前40分钟到码头",
-        "tr": 1
-      },
-      {
-        "t": "11:10",
-        "w": "抵达尖沙咀中港城码头",
-        "d": "步行至尖东站约8分钟",
-        "tr": 1
-      },
-      {
-        "t": "11:30",
-        "w": "屯马线 → 宋皇台站",
-        "d": "约15分钟",
-        "tr": 1
-      },
-      {
-        "t": "11:50",
-        "w": "🟢 【九龙城】开始",
-        "d": "小泰国之旅",
-        "tr": 0
-      },
-      {
-        "t": "11:50",
-        "w": "金泰沙冰",
-        "d": "泰式沙嗲串烧外带，边走边吃，10分钟",
-        "shop": "金泰沙冰"
-      },
-      {
-        "t": "12:00",
-        "w": "彩虹",
-        "d": "斑兰流心包外带，5分钟",
-        "shop": "彩虹"
-      },
-      {
-        "t": "12:10",
-        "w": "午餐：隆姐泰国美食馆 / BTS美食站",
-        "d": "泰国菜午餐45-60分钟，空调✅",
-        "shop": "隆姐泰国美食馆"
-      },
-      {
-        "t": "13:00",
-        "w": "大和堂咖啡 ☕",
-        "d": "招牌鲜奶咖啡+鸡蛋仔炸鸡，休息30-40分钟",
-        "shop": "大和堂"
-      },
-      {
-        "t": "13:40",
-        "w": "九龙寨城公园+光影展",
-        "d": "排队领下午筹，参观45-60分钟",
-        "shop": "九龙寨城光影展"
-      },
-      {
-        "t": "14:50",
-        "w": "屯马线→美孚→荃湾线→旺角站",
-        "d": "约25分钟",
-        "tr": 1
-      },
-      {
-        "t": "15:15",
-        "w": "弥敦道金铺",
-        "d": "顺路逛15分钟",
-        "shop": "弥敦道金铺"
-      },
-      {
-        "t": "15:30",
-        "w": "肥姐小食店 🦑",
-        "d": "大皇牌套餐，快闪20分钟",
-        "shop": "肥姐小食店"
-      },
-      {
-        "t": "15:55",
-        "w": "荃湾线1站→深水埗站",
-        "d": "3分钟",
-        "tr": 1
-      },
-      {
-        "t": "16:00",
-        "w": "🔵 【深水埗】开始",
-        "d": "美食+文青之旅",
-        "tr": 0
-      },
-      {
-        "t": "16:00",
-        "w": "合益泰小食",
-        "d": "猪肠粉，15分钟",
-        "shop": "合益泰小食"
-      },
-      {
-        "t": "16:20",
-        "w": "公和豆品厂",
-        "d": "豆腐花+煎酿豆腐，15分钟",
-        "shop": "公和豆品厂"
-      },
-      {
-        "t": "16:40",
-        "w": "大南街漫步",
-        "d": "文化屋→White Noise→阿里皮艺，40-50分钟",
-        "shop": "文化屋杂货店"
-      },
-      {
-        "t": "17:30",
-        "w": "Café Sausalito / 顺流咖啡 ☕",
-        "d": "咖啡休息+空调，30分钟",
-        "shop": "Café Sausalito"
-      },
-      {
-        "t": "17:55",
-        "w": "坤记糕品",
-        "d": "外带，5分钟",
-        "shop": "坤记糕品"
-      },
-      {
-        "t": "18:10",
-        "w": "步行→美荷楼生活馆",
-        "d": "⚠️18:00关门！",
-        "shop": "美荷楼"
-      },
-      {
-        "t": "17:55",
-        "w": "嘉顿山登山",
-        "d": "10分钟登顶",
-        "shop": "嘉顿山"
-      },
-      {
-        "t": "18:10",
-        "w": "🌅 山顶看日落+拍全景",
-        "d": "⚠️无路灯，天黑前下山",
-        "shop": "嘉顿山"
-      },
-      {
-        "t": "18:45",
-        "w": "下山",
-        "d": "",
-        "tr": 1
-      },
-      {
-        "t": "19:00",
-        "w": "🍽️ 晚餐：德丰打冷",
-        "d": "潮州打冷，蚝饼+卤水拼盘，人均HK$60-80",
-        "shop": "德丰打冷"
-      },
-      {
-        "t": "20:00",
-        "w": "深水埗站→荔景→东涌→B6→口岸",
-        "d": "约45分钟",
-        "tr": 1
-      },
-      {
-        "t": "21:00",
-        "w": "🚌 金巴回珠海",
-        "d": "24小时运营，约40分钟",
-        "tr": 1
-      }
+      {"t":"08:20","w":"🚢 珠海九洲港出发","d":"","tr":1},
+      {"t":"09:40","w":"抵达港澳码头（上环）","d":"","tr":1},
+      {"t":"09:50","w":"🔵 【西营盘】港版山城","d":"步行/叮叮车5分钟即达","tr":0},
+      {"t":"09:55","w":"艺里坊壁画街","d":"16幅大型壁画，彩虹楼梯打卡，20分钟","shop":"艺里坊壁画街"},
+      {"t":"10:20","w":"西源里福德宫 🔥","d":"全港唯一招财猫神坛，街坊上供猫罐头","shop":"西源里福德宫"},
+      {"t":"10:40","w":"东边街 → 正街","d":"魔幻斜坡+直通大海，等红色taxi入画","shop":"正街"},
+      {"t":"11:05","w":"余乐里 百年唐楼","d":"法式门窗+拱形砖结构，15分钟","shop":"余乐里百年唐楼"},
+      {"t":"11:25","w":"西营盘 → MTR → 尖沙咀","d":"港岛线→金钟→荃湾线，15分钟","tr":1},
+      {"t":"11:45","w":"步行至重庆大厦","d":"尖沙咀站3分钟","tr":1},
+      {"t":"12:00","w":"新德里餐厅 印度午餐 🍛","d":"黄油鸡+蒜蓉烤饼+咖喱牛肉，50min。⚠️12点开门直接上3楼","shop":"新德里餐厅"},
+      {"t":"12:55","w":"尖东 → 屯马线 → 宋皇台","d":"15min","tr":1},
+      {"t":"13:15","w":"🟢 【九龙城 精简版】","d":"","tr":0},
+      {"t":"13:15","w":"九龙寨城公园 + 光影展","d":"必看！公园散步+看展，45分钟","shop":"九龙寨城光影展"},
+      {"t":"14:05","w":"大和堂咖啡 ☕","d":"招牌鲜奶咖啡+鸡蛋仔炸鸡，25min，空调✅","shop":"大和堂"},
+      {"t":"14:35","w":"金泰沙冰","d":"泰式沙嗲串烧外带，5分钟","shop":"金泰沙冰"},
+      {"t":"14:45","w":"彩虹","d":"斑兰冰心包外带，5分钟","shop":"彩虹"},
+      {"t":"14:55","w":"泰圆丰","d":"泰国酱料零食手信，10分钟","shop":"泰圆丰"},
+      {"t":"15:10","w":"地茂馆甜品 外带","d":"合桃糊打包，5分钟","shop":"地茂馆甜品"},
+      {"t":"15:20","w":"宋皇台 → 屯马线1站 → 土瓜湾","d":"2分钟","tr":1},
+      {"t":"15:25","w":"🔴 【土瓜湾 精简版】","d":"","tr":0},
+      {"t":"15:25","w":"夕拾 Jiksap 🔥","d":"工厦9楼旧物仓，旧招牌/黑胶/老玩具，40分钟","shop":"夕拾 Jiksap"},
+      {"t":"16:10","w":"牛棚艺术村","d":"红砖屠房活化，免费，拍照30分钟","shop":"牛棚艺术村"},
+      {"t":"16:45","w":"十三街","d":"七彩唐楼群，龙图街×凤仪街仰拍，15分钟","shop":"十三街"},
+      {"t":"17:05","w":"呼吸星球 ☕","d":"昭和风cafe，手冲咖啡，歇脚25min，空调✅","shop":"呼吸星球"},
+      {"t":"17:35","w":"土瓜湾站 → 上环","d":"屯马线→美孚→荃湾线→金钟→港岛线，35分钟","tr":1},
+      {"t":"18:15","w":"港澳码头 陪她取票","d":"","tr":1},
+      {"t":"18:45","w":"送她入闸 ← 拥抱告别","d":"","tr":1},
+      {"t":"18:50","w":"👩 你出发 → 上环 → 香港站 → 九龙站 → 西九龙站","d":"约20分钟","tr":1},
+      {"t":"19:15","w":"到西九龙站 过关安检","d":"","tr":1},
+      {"t":"19:49","w":"🚄 高铁 → 深圳北 → 惠州北","d":"19:49出发 20:23到深圳北 20:41换乘","tr":1},
+      {"t":"18:45","w":"👧 她候船","d":"","tr":1},
+      {"t":"19:30","w":"🚢 她开船 → 九洲港","d":"70分钟 → 20:40到港 → 21:15到家","tr":1}
     ]
   },
-  "planB3": {
-    "title": "Plan B-3 ⭐ 印度菜+双街区(无K11)",
-    "sub": "🚢 船到中港城 | 🚌 金巴返 | 🍜 午餐重庆大厦印度菜 | 🍽️ 晚餐土耳其餐廳(土耳其)",
+  "main": {
+    "title": "Plan A · 九龙城 土瓜湾 深度游",
+    "sub": "🚢 去程船到港澳码头 | 👩 你🚄西九龙19:49→深圳北→惠州北 | 👧 她🚢港澳码头19:30→九洲港",
     "items": [
-      {
-        "t": "10:00",
-        "w": "🚢 珠海九洲港出发",
-        "d": "船程约70分钟",
-        "tr": 1
-      },
-      {
-        "t": "11:10",
-        "w": "抵达中港城码头",
-        "d": "",
-        "tr": 1
-      },
-      {
-        "t": "11:15",
-        "w": "步行至重庆大厦",
-        "d": "斜对面，5分钟",
-        "tr": 1
-      },
-      {
-        "t": "11:20",
-        "w": "新德里餐厅 印度午餐 🍛",
-        "d": "咖喱牛肉、黄油鸡、蒜蓉烤饼。⚠️直接上3楼！",
-        "shop": "新德里餐厅"
-      },
-      {
-        "t": "12:15",
-        "w": "尖东站→屯马线→宋皇台站",
-        "d": "15分钟",
-        "tr": 1
-      },
-      {
-        "t": "12:30",
-        "w": "🟢 【九龙城】纯逛模式",
-        "d": "",
-        "tr": 0
-      },
-      {
-        "t": "12:30",
-        "w": "金泰沙冰",
-        "d": "串烧外带，10分钟",
-        "shop": "金泰沙冰"
-      },
-      {
-        "t": "12:45",
-        "w": "大和堂咖啡 ☕",
-        "d": "招牌鲜奶咖啡+鸡蛋仔炸鸡，休息35-40分钟",
-        "shop": "大和堂"
-      },
-      {
-        "t": "13:25",
-        "w": "地茂馆甜品/合成糖水",
-        "d": "冰甜品，15分钟",
-        "shop": "地茂馆甜品"
-      },
-      {
-        "t": "13:45",
-        "w": "九龙寨城公园+光影展",
-        "d": "领下午筹，30-45分钟",
-        "shop": "九龙寨城光影展"
-      },
-      {
-        "t": "14:30",
-        "w": "屯马线→美孚→荃湾线→旺角站",
-        "d": "25分钟",
-        "tr": 1
-      },
-      {
-        "t": "14:55",
-        "w": "弥敦道金铺",
-        "d": "顺路逛15分钟",
-        "shop": "弥敦道金铺"
-      },
-      {
-        "t": "15:10",
-        "w": "肥姐小食店 🦑",
-        "d": "大皇牌套餐",
-        "shop": "肥姐小食店"
-      },
-      {
-        "t": "15:35",
-        "w": "荃湾线1站→深水埗",
-        "d": "3分钟",
-        "tr": 1
-      },
-      {
-        "t": "15:40",
-        "w": "🔵 【深水埗】",
-        "d": "",
-        "tr": 0
-      },
-      {
-        "t": "15:40",
-        "w": "合益泰小食",
-        "d": "猪肠粉",
-        "shop": "合益泰小食"
-      },
-      {
-        "t": "16:00",
-        "w": "公和豆品厂",
-        "d": "豆腐花+煎酿豆腐",
-        "shop": "公和豆品厂"
-      },
-      {
-        "t": "16:20",
-        "w": "大南街漫步",
-        "d": "文化屋→White Noise→阿里皮艺",
-        "shop": "文化屋杂货店"
-      },
-      {
-        "t": "17:15",
-        "w": "Café Sausalito/顺流咖啡",
-        "d": "咖啡休息30分钟",
-        "shop": "顺流精品咖啡"
-      },
-      {
-        "t": "17:45",
-        "w": "美荷楼生活馆",
-        "d": "⚠️18:00关门",
-        "shop": "美荷楼"
-      },
-      {
-        "t": "17:55",
-        "w": "嘉顿山登顶",
-        "d": "10分钟",
-        "shop": "嘉顿山"
-      },
-      {
-        "t": "18:10",
-        "w": "🌅 日落+全景",
-        "d": "⚠️天黑前下山",
-        "shop": "嘉顿山"
-      },
-      {
-        "t": "18:45",
-        "w": "下山",
-        "d": "",
-        "tr": 1
-      },
-      {
-        "t": "19:00",
-        "w": "🍽️ 晚餐 土耳其餐廳 🇹🇷",
-        "d": "土耳其烤肉卷+中东香料饭",
-        "shop": "土耳其餐廳"
-      },
-      {
-        "t": "20:00",
-        "w": "深水埗站→东涌→B6→口岸",
-        "d": "约45分钟",
-        "tr": 1
-      },
-      {
-        "t": "21:00",
-        "w": "🚌 金巴回珠海",
-        "d": "24小时运营",
-        "tr": 1
-      }
-    ]
-  },
-  "planB1": {
-    "title": "Plan B-1 · 印度菜+K11+深水埗",
-    "sub": "🚢 船到中港城 | 🚌 金巴返 | 🍜 午餐重庆大厦印度菜 | 🛍️ K11 MUSEA | 🍽️ 晚餐新香园(蛋牛治)",
-    "items": [
-      {
-        "t": "10:00",
-        "w": "🚢 珠海九洲港出发",
-        "d": "",
-        "tr": 1
-      },
-      {
-        "t": "11:10",
-        "w": "抵达中港城",
-        "d": "",
-        "tr": 1
-      },
-      {
-        "t": "11:20",
-        "w": "重庆大厦 新德里餐厅 印度午餐",
-        "d": "~50分钟",
-        "shop": "新德里餐厅"
-      },
-      {
-        "t": "12:30",
-        "w": "步行至 K11 MUSEA",
-        "d": "沿海滨15分钟",
-        "tr": 1
-      },
-      {
-        "t": "12:45",
-        "w": "K11 MUSEA 🛍️",
-        "d": "MoMA Design Store+7楼空中花园，45分钟",
-        "shop": "K11 MUSEA"
-      },
-      {
-        "t": "13:45",
-        "w": "尖沙咀站→荃湾线→旺角站",
-        "d": "8分钟",
-        "tr": 1
-      },
-      {
-        "t": "14:00",
-        "w": "弥敦道金铺",
-        "d": "15分钟",
-        "shop": "弥敦道金铺"
-      },
-      {
-        "t": "14:20",
-        "w": "肥姐小食店 🦑",
-        "d": "大皇牌套餐",
-        "shop": "肥姐小食店"
-      },
-      {
-        "t": "14:45",
-        "w": "荃湾线1站→深水埗",
-        "d": "3分钟",
-        "tr": 1
-      },
-      {
-        "t": "14:50",
-        "w": "🔵 【深水埗】",
-        "d": "合益泰→公和→大南街→咖啡→嘉顿山",
-        "tr": 0
-      },
-      {
-        "t": "14:50",
-        "w": "合益泰小食",
-        "d": "15分钟",
-        "shop": "合益泰小食"
-      },
-      {
-        "t": "15:10",
-        "w": "公和豆品厂",
-        "d": "15分钟",
-        "shop": "公和豆品厂"
-      },
-      {
-        "t": "15:30",
-        "w": "大南街文青店",
-        "d": "文化屋→White Noise→阿里皮艺",
-        "shop": "文化屋杂货店"
-      },
-      {
-        "t": "16:30",
-        "w": "Café Sausalito",
-        "d": "咖啡休息30分钟",
-        "shop": "Café Sausalito"
-      },
-      {
-        "t": "17:15",
-        "w": "美荷楼生活馆",
-        "d": "30分钟",
-        "shop": "美荷楼"
-      },
-      {
-        "t": "17:50",
-        "w": "🌅 嘉顿山日落",
-        "d": "",
-        "shop": "嘉顿山"
-      },
-      {
-        "t": "18:45",
-        "w": "下山",
-        "d": "",
-        "tr": 1
-      },
-      {
-        "t": "19:00",
-        "w": "🍽️ 晚餐：新香园(坚记)",
-        "d": "蛋牛治+红豆冰 HK$30-40",
-        "shop": "新香园坚记"
-      },
-      {
-        "t": "20:00",
-        "w": "返程→东涌→金巴",
-        "d": "",
-        "tr": 1
-      }
-    ]
-  },
-  "planB2": {
-    "title": "Plan B-2 · 印度菜+K11+九龙城",
-    "sub": "🚢 船到中港城 | 🚌 金巴返 | 🍜 午餐重庆大厦印度菜 | 🛍️ K11 MUSEA | 🍽️ 晚餐周记油渣面",
-    "items": [
-      {
-        "t": "10:00",
-        "w": "🚢 珠海九洲港出发",
-        "d": "",
-        "tr": 1
-      },
-      {
-        "t": "11:10",
-        "w": "抵达中港城",
-        "d": "",
-        "tr": 1
-      },
-      {
-        "t": "11:20",
-        "w": "重庆大厦 新德里餐厅 印度午餐",
-        "d": "~50分钟",
-        "shop": "新德里餐厅"
-      },
-      {
-        "t": "12:30",
-        "w": "K11 MUSEA 🛍️",
-        "d": "45分钟",
-        "shop": "K11 MUSEA"
-      },
-      {
-        "t": "13:30",
-        "w": "尖东站→屯马线→宋皇台",
-        "d": "15分钟",
-        "tr": 1
-      },
-      {
-        "t": "13:50",
-        "w": "🟢 【九龙城】",
-        "d": "",
-        "tr": 0
-      },
-      {
-        "t": "13:50",
-        "w": "金泰沙冰",
-        "d": "串烧外带",
-        "shop": "金泰沙冰"
-      },
-      {
-        "t": "14:05",
-        "w": "大和堂咖啡 ☕",
-        "d": "招牌鲜奶咖啡+鸡蛋仔炸鸡",
-        "shop": "大和堂"
-      },
-      {
-        "t": "14:50",
-        "w": "九龙寨城光影展",
-        "d": "45分钟",
-        "shop": "九龙寨城光影展"
-      },
-      {
-        "t": "15:40",
-        "w": "地茂馆甜品",
-        "d": "冰甜品15分钟",
-        "shop": "地茂馆甜品"
-      },
-      {
-        "t": "16:00",
-        "w": "→旺角",
-        "d": "25分钟",
-        "tr": 1
-      },
-      {
-        "t": "16:30",
-        "w": "弥敦道金铺",
-        "d": "15分钟",
-        "shop": "弥敦道金铺"
-      },
-      {
-        "t": "16:50",
-        "w": "肥姐小食店 🦑",
-        "d": "大皇牌套餐",
-        "shop": "肥姐小食店"
-      },
-      {
-        "t": "17:15",
-        "w": "→深水埗",
-        "d": "5分钟",
-        "tr": 1
-      },
-      {
-        "t": "17:20",
-        "w": "合益泰+公和",
-        "d": "外带快吃20分钟",
-        "shop": "合益泰小食"
-      },
-      {
-        "t": "17:50",
-        "w": "🌅 嘉顿山日落",
-        "d": "⚠️美荷楼已关门",
-        "shop": "嘉顿山"
-      },
-      {
-        "t": "18:30",
-        "w": "下山",
-        "d": "",
-        "tr": 1
-      },
-      {
-        "t": "19:00",
-        "w": "🍽️ 晚餐：周记油渣面",
-        "d": "濒危港式美食 HK$30-45",
-        "shop": "周记油渣面"
-      },
-      {
-        "t": "20:00",
-        "w": "返程→东涌→金巴",
-        "d": "",
-        "tr": 1
-      }
+      {"t":"09:40","w":"🚢 抵达港澳码头（上环）","d":"","tr":1},
+      {"t":"09:50","w":"上环 → 金钟 → 屯马线 → 宋皇台","d":"约25分钟","tr":1},
+      {"t":"10:20","w":"🟢 【九龙城】开始","d":"小泰国深度游","tr":0},
+      {"t":"10:20","w":"寨城公园散步 + 光影展领筹","d":"天亮好拍照，15分钟","shop":"九龙寨城公园"},
+      {"t":"10:40","w":"九龙寨城光影展","d":"排队领筹看展，45分钟","shop":"九龙寨城光影展"},
+      {"t":"11:30","w":"隆姐泰国美食馆 早午餐","d":"咖喱大包+冬荫功，40分钟，11点开门就来","shop":"隆姐泰国美食馆"},
+      {"t":"12:15","w":"彩虹","d":"斑兰冰心包外带，5分钟","shop":"彩虹"},
+      {"t":"12:25","w":"泰圆丰","d":"泰国杂货手信，15分钟","shop":"泰圆丰"},
+      {"t":"12:45","w":"大和堂咖啡 ☕","d":"招牌鲜奶咖啡+鸡蛋仔炸鸡，35分钟，空调✅","shop":"大和堂"},
+      {"t":"13:25","w":"南角","d":"斑兰椰啡，80年唐楼cafe，25分钟","shop":"南角"},
+      {"t":"13:55","w":"金泰沙冰","d":"泰式沙嗲串烧外带，5分钟","shop":"金泰沙冰"},
+      {"t":"14:05","w":"地茂馆甜品 / 合成糖水 外带","d":"合桃糊+莲子清心丸打包，5分钟","shop":"地茂馆甜品"},
+      {"t":"14:15","w":"宋皇台 → 屯马线1站 → 土瓜湾","d":"2分钟","tr":1},
+      {"t":"14:20","w":"🔴 【土瓜湾】开始","d":"老区寻宝之旅","tr":0},
+      {"t":"14:20","w":"永香冰室","d":"60年怀旧冰厅，西多士+奶茶，15分钟","shop":"永香冰室"},
+      {"t":"14:40","w":"夕拾 Jiksap 🔥","d":"工厦9楼旧物仓，旧招牌/黑胶/老玩具，45分钟","shop":"夕拾 Jiksap"},
+      {"t":"15:30","w":"牛棚艺术村","d":"1908年红砖屠房活化，免费，拍照45分钟","shop":"牛棚艺术村"},
+      {"t":"16:20","w":"十三街","d":"七彩瑞兽唐楼群，龙图街×凤仪街仰拍，20分钟","shop":"十三街"},
+      {"t":"16:45","w":"呼吸星球 ☕","d":"昭和风cafe，手冲咖啡，歇脚30分钟，空调✅","shop":"呼吸星球"},
+      {"t":"17:20","w":"海心公园","d":"海滨长廊，歇脚吹海风看维港，10分钟","shop":"海心公园"},
+      {"t":"17:35","w":"土瓜湾站 → 屯马线 → 美孚 → 荃湾线 → 金钟 → 港岛线 → 上环","d":"直接从土瓜湾走，不用回宋皇台，约35分钟","tr":1},
+      {"t":"18:15","w":"港澳码头 陪她取票","d":"","tr":1},
+      {"t":"18:45","w":"送她入闸 ← 拥抱告别","d":"","tr":1},
+      {"t":"18:50","w":"👩 你出发 → 上环 → 香港站 → 九龙站 → 西九龙站","d":"约20分钟","tr":1},
+      {"t":"19:10","w":"到西九龙站 过关安检","d":"","tr":1},
+      {"t":"19:49","w":"🚄 高铁 → 深圳北 → 惠州北","d":"19:49出发 20:23到深圳北 20:41换乘","tr":1},
+      {"t":"18:45","w":"👧 她候船","d":"","tr":1},
+      {"t":"19:30","w":"🚢 她开船 → 九洲港","d":"70分钟 → 20:40到港 → 21:15到家","tr":1}
     ]
   }
 };
-let userPos = null, distCache = {};var checklist={};try{checklist=JSON.parse(localStorage.getItem("hk_checks")||"{}")}catch(e){}function toggleCheck(id,el){checklist[id]=!checklist[id];try{localStorage.setItem("hk_checks",JSON.stringify(checklist))}catch(e){}refreshAllChecks()}function refreshAllChecks(){document.querySelectorAll(".tl-dot,.card,.timeline-item[data-shop],.modal-check").forEach(function(e){var id=e.dataset.shop;if(!id)return;if(checklist[id]){e.classList.add("checked");if(e.classList.contains("modal-check")){e.textContent='✓';e.style.background='var(--accent)';e.style.borderColor='var(--accent)';e.style.color='#fff'}}else{e.classList.remove("checked");if(e.classList.contains("modal-check")){e.textContent='';e.style.background='transparent';e.style.borderColor='#ccc';e.style.color='transparent'}}})}
-
+let userPos = null, distCache = {};var checklist={};try{checklist=JSON.parse(localStorage.getItem("hk_checks")||"{}")}catch(e){}function toggleCheck(id,el){checklist[id]=!checklist[id];try{localStorage.setItem("hk_checks",JSON.stringify(checklist))}catch(e){}refreshAllChecks()}function refreshAllChecks(){document.querySelectorAll(".tl-dot,.card,.timeline-item[data-shop],.modal-check").forEach(function(e){var id=e.dataset.shop;if(!id)return;if(checklist[id]){e.classList.add("checked");if(e.classList.contains("modal-check")){e.textContent="✓";e.style.background="var(--accent)";e.style.borderColor="var(--accent)";e.style.color="#fff"}}else{e.classList.remove("checked");if(e.classList.contains("modal-check")){e.textContent="";e.style.background="transparent";e.style.borderColor="#ccc";e.style.color="transparent"}}})}
 function isMobile(){return /Android|iPhone|iPad|iPod|webOS/i.test(navigator.userAgent)}
 
 // Deep link event delegation
@@ -1307,17 +1061,17 @@ function renderDir(list,title){
       h+='<div class="meta"><span>📍 '+s.addr+'</span><span>💰 '+s.price+'</span><span>🪑 '+s.ac+'</span></div>';
       h+='<div class="short">'+s.desc.substring(0,100)+'...</div></div>';
     });
-  }
+  };
   return h;
 }
 
 function renderInfo(){
   return'<h1>实用信息</h1>'+
-'<div class="card" style="cursor:default"><h3>🚢 去程交通</h3><p style="font-size:13px">珠海九洲港→香港中港城码头<br>首班10:00，航程约70分钟，票价~HK$200/人<br>微信小程序「九洲客运港」提前购票<br>提前40分钟到码头</p></div>'+
-'<div class="card" style="cursor:default"><h3>🚌 返程交通</h3><p style="font-size:13px">港珠澳大桥香港口岸→珠海<br>金巴24小时运营，日间HK$65/人，约40分钟<br>东涌站→B6巴士(15分钟)→口岸</p></div>'+
-'<div class="card" style="cursor:default"><h3>💰 预算(每人HKD)</h3><p style="font-size:13px">船票~200+金巴65+午餐80-150+肥姐40+咖啡120+小食60+晚餐30-150+地铁50=<b>~600-800</b></p></div>'+
-'<div class="card" style="cursor:default"><h3>☀️ 5月底天气</h3><p style="font-size:13px">28-33°C湿热。必备：透气快干衣、舒适鞋、遮阳帽、防晒霜、折叠伞、小风扇、充电宝<br>八达通~HK$150 | 现金HK$300-500(老店只收现金)</p></div>'+
-'<div class="card" style="cursor:default"><h3>📍 位置预设</h3><p style="font-size:13px;margin-bottom:8px">GPS不可用时，点击下方按钮模拟位置查看距离：</p>'+'<button onclick="setLocation(22.3002,114.1678,\'中港城码头\');return false" style="margin:4px 6px 4px 0;padding:6px 14px;border:1px solid #ddd;border-radius:16px;background:#f5f5f5;cursor:pointer;font-size:12px">🚢 中港城码头</button>'+'<button onclick="setLocation(22.3180,114.1710,\'旺角\');return false" style="margin:4px 6px 4px 0;padding:6px 14px;border:1px solid #ddd;border-radius:16px;background:#f5f5f5;cursor:pointer;font-size:12px">🛍️ 旺角弥敦道</button>'+'<button onclick="setLocation(22.3300,114.1630,\'深水埗\');return false" style="margin:4px 6px 4px 0;padding:6px 14px;border:1px solid #ddd;border-radius:16px;background:#f5f5f5;cursor:pointer;font-size:12px">🏘️ 深水埗</button>'+'<button onclick="setLocation(22.2964,114.1728,\'尖沙咀\');return false" style="margin:4px 6px 4px 0;padding:6px 14px;border:1px solid #ddd;border-radius:16px;background:#f5f5f5;cursor:pointer;font-size:12px">🌃 尖沙咀</button>'+'<button onclick="userPos=null;distCache={};refreshDist();return false" style="margin:4px 6px 4px 0;padding:6px 14px;border:1px solid #fcc;border-radius:16px;background:#fff5f5;cursor:pointer;font-size:12px">✕ 清除位置</button></div>'+'<div class="card" style="cursor:default"><h3>🍽️ 晚餐备选</h3><p style="font-size:13px">德丰打冷(潮州)、新香园(蛋牛治)、周记油渣面、土耳其餐廳(土耳其)、捌哥捌哥(马来西亚)、月桥(越南)、苏山鸡饭(新加坡)、缘潮味(潮州粉面)</p></div>';
+'<div class="card" style="cursor:default"><h3>🚢 去程交通</h3><p style="font-size:13px"><b>Plan A / B（路线总览）：</b>珠海九洲港 → 香港港澳码头（上环）<br>08:20出发，09:40抵达，航程约70分钟，票价~HK$200/人<br><br><b>Plan B-1/2/3（K11路线）：</b>珠海九洲港 → 香港中港城码头（尖沙咀）<br>10:00出发，11:10抵达，票价~HK$200/人<br><br>微信小程序「九洲客运港」提前购票，提前40分钟到码头</p></div>'+
+'<div class="card" style="cursor:default"><h3>🚌 返程交通（三选一）</h3><p style="font-size:13px"><b>1. 🚄 高铁（你）：</b>上环 → 香港站 → 九龙站 → 西九龙站（~20min）<br>西九龙 19:49 → 深圳北 20:23 → 换乘 20:41 → 惠州北<br><br><b>2. 🚢 船（她）：</b>港澳码头 19:30 → 九洲港（70分钟）→ 20:40到港<br><br><b>3. 🚌 金巴（Plan B variants）：</b>深水埗 → 荔景 → 东涌线 → 东涌站（~30min）<br>东涌 B6巴士 → 港珠澳大桥香港口岸（15min）→ 金巴 HK$65/人（~40min）<br>金巴24小时运营，日间HK$65，夜间HK$70</p></div>'+
+'<div class="card" style="cursor:default"><h3>💰 预算（每人HKD）</h3><p style="font-size:13px"><b>Plan A（九龙城·土瓜湾深度游）：</b><br>船票200 + 午餐80-150 + 咖啡/甜品~80 + 小食~40 + 地铁~50 = <b>~450-520</b>（不含返程）<br>返程：高铁另计 / 船票另计<br><br><b>Plan B-3（印度菜+双街区）⭐推荐：</b><br>船票200 + 金巴65 + 印度午餐120 + 街区小食+咖啡100 + 肥姐40 + 晚餐120 + 地铁45 = <b>~690</b><br><br><b>Plan B-1（留深水埗）：</b>~600 &nbsp;|&nbsp; <b>Plan B-2（留九龙城）：</b>~585</p></div>'+
+'<div class="card" style="cursor:default"><h3>☀️ 天气（5月30日 周六）</h3><p style="font-size:13px">预计28-33°C，湿热，可能有骤雨<br>必备：透气快干衣、舒适步行鞋、遮阳帽、防晒霜、折叠伞、小风扇、充电宝<br>八达通充值~HK$150/人 | 现金HK$300-500/人（老店只收现金）<br>⚠️ 户外路段多（十三街、牛棚、海心公园），注意补水和防晒</p></div>'+
+'<div class="card" style="cursor:default"><h3>📍 位置预设</h3><p style="font-size:13px;margin-bottom:8px">GPS不可用时，点击下方按钮模拟位置查看距离：</p>'+'<button onclick="setLocation(22.3002,114.1678,\'中港城码头\');return false" style="margin:4px 6px 4px 0;padding:6px 14px;border:1px solid #ddd;border-radius:16px;background:#f5f5f5;cursor:pointer;font-size:12px">🚢 中港城码头</button>'+'<button onclick="setLocation(22.286,114.143,\'港澳码头(上环)\');return false" style="margin:4px 6px 4px 0;padding:6px 14px;border:1px solid #ddd;border-radius:16px;background:#f5f5f5;cursor:pointer;font-size:12px">⚓ 港澳码头(上环)</button>'+'<button onclick="setLocation(22.3180,114.1710,\'旺角\');return false" style="margin:4px 6px 4px 0;padding:6px 14px;border:1px solid #ddd;border-radius:16px;background:#f5f5f5;cursor:pointer;font-size:12px">🛍️ 旺角弥敦道</button>'+'<button onclick="setLocation(22.3300,114.1630,\'深水埗\');return false" style="margin:4px 6px 4px 0;padding:6px 14px;border:1px solid #ddd;border-radius:16px;background:#f5f5f5;cursor:pointer;font-size:12px">🏘️ 深水埗</button>'+'<button onclick="setLocation(22.2964,114.1728,\'尖沙咀\');return false" style="margin:4px 6px 4px 0;padding:6px 14px;border:1px solid #ddd;border-radius:16px;background:#f5f5f5;cursor:pointer;font-size:12px">🌃 尖沙咀</button>'+'<button onclick="userPos=null;distCache={};refreshDist();return false" style="margin:4px 6px 4px 0;padding:6px 14px;border:1px solid #fcc;border-radius:16px;background:#fff5f5;cursor:pointer;font-size:12px">✕ 清除位置</button></div>'+'<div class="card" style="cursor:default"><h3>🍽️ 晚餐备选（深水埗/太子，嘉顿山下山步行可达）</h3><p style="font-size:13px"><b>Lonely Paisley</b> 土耳其菜 HK$100-150 | <b>捌哥捌哥</b> 马来西亚肉骨茶 HK$50-100 | <b>德丰打冷</b> 潮州打冷 HK$60-80 | <b>新香园坚记</b> 蛋牛治 HK$30-40 | <b>周记油渣面</b> 濒危美食 HK$30-45 | <b>月桥</b> 越南生牛河 HK$48-70 | <b>苏山鸡饭</b> 新加坡菜 HK$100-160 | <b>缘潮味</b> 潮州粉面 HK$40-50</p></div>';
 }
 
 // Modal
@@ -1332,19 +1086,19 @@ function openModal(id){
 function closeModal(){window._modalOpen=false;document.getElementById('modalOverlay').classList.remove('show');document.body.style.overflow='auto';document.body.style.position='';document.body.style.top='';document.body.style.width='';var _sy=parseInt(document.body.dataset.scrollY)||0;document.body.dataset.scrollY='';window.scrollTo(0,_sy);if(window._resetScroll)window._resetScroll()}
 
 // Page switching with scroll position memory
-var pageScrolls={},currentPage='planA';
+var pageScrolls={},currentPage='main';
 function switchPage(id,el){
   document.querySelectorAll('nav a').forEach(function(a){a.classList.remove('active')});
   if(el)el.classList.add('active');
   var m=document.getElementById('mainContent');
   pageScrolls[currentPage]=window.pageYOffset||document.documentElement.scrollTop;
-  if(id==='planA')m.innerHTML=renderRoute('planA');
-  else if(id==='planB3')m.innerHTML=renderRoute('planB3');
-  else if(id==='planB1')m.innerHTML=renderRoute('planB1');
-  else if(id==='planB2')m.innerHTML=renderRoute('planB2');
-  else if(id==='dirKowloon')m.innerHTML=renderDir(["金泰沙冰","彩虹","隆姐泰国美食馆","BTS美食站","黄珍珍泰国菜馆","金宝泰国菜馆","昭拍耶","泰金国","泰发泰国餐厅","大和堂","南角","地茂馆甜品","合成糖水","清真牛肉馆","九龙寨城光影展","九龙寨城公园"],'九龙城店铺全览');
-  else if(id==='dirShamshuipo')m.innerHTML=renderDir(["合益泰小食","公和豆品厂","坤记糕品","汉发面家","文记车仔面","新香园坚记","Café Sausalito","顺流精品咖啡","文化屋杂货店","White Noise Records","阿里皮艺","DX设计馆","美荷楼","嘉顿山"],'深水埗店铺全览');
-  else if(id==='dirOther')m.innerHTML=renderDir(["重庆大厦","新德里餐厅","K11 MUSEA","肥姐小食店","弥敦道金铺","中港城码头","港珠澳大桥口岸","土耳其餐廳","德丰打冷","周记油渣面","捌哥捌哥","月桥正宗越南汤粉","苏山鸡饭","缘潮味"],'尖沙咀·旺角·晚餐');
+  if(id==='main')m.innerHTML=renderRoute('main');
+  else if(id==='planB')m.innerHTML=renderRoute('planB');
+  else if(id==='dirKowloon')m.innerHTML=renderDir(["金泰沙冰","彩虹","泰圆丰","隆姐泰国美食馆","BTS美食站","黄珍珍泰国菜馆","金宝泰国菜馆","昭拍耶","泰金国","泰发泰国餐厅","大和堂","南角","地茂馆甜品","合成糖水","清真牛肉馆","九龙寨城光影展","九龙寨城公园"],'九龙城店铺全览');
+  else if(id==='dirShamshuipo')m.innerHTML=renderDir(["鸭寮街","合益泰小食","公和豆品厂","坤记糕品","汉发面家","文记车仔面","新香园坚记","Café Sausalito","顺流精品咖啡","文化屋杂货店","White Noise Records","阿里皮艺","DX设计馆","美荷楼","嘉顿山"],'深水埗店铺全览');
+  else if(id==='dirSYP')m.innerHTML=renderDir(["艺里坊壁画街","西源里福德宫","东边街","正街","余乐里百年唐楼","NOC Coffee Co.","不籽是咖啡","Coffee by Zion","So High Coffee Bar","BakeOut 彼之丘","英记面家"],'西营盘景点全览');
+  else if(id==='dirTKW')m.innerHTML=renderDir(["永香冰室","夕拾 Jiksap","牛棚艺术村","十三街","呼吸星球","海心公园"],'土瓜湾店铺全览');
+  else if(id==='dirOther')m.innerHTML=renderDir(["土耳其餐廳","良记印尼","重庆大厦","新德里餐厅","K11 MUSEA","肥姐小食店","弥敦道金铺","中港城码头","港珠澳大桥口岸","德丰打冷","周记油渣面","捌哥捌哥","月桥正宗越南汤粉","苏山鸡饭","缘潮味"],'交通·晚餐');
   else if(id==='info')m.innerHTML=renderInfo();
   currentPage=id;
   setTimeout(function(){window.scrollTo(0,pageScrolls[id]||0);setTimeout(refreshAllChecks,100)},50);
@@ -1352,8 +1106,10 @@ function switchPage(id,el){
 }
 
 // Init
-document.addEventListener("DOMContentLoaded",function(){try{switchPage('planA',document.querySelector('nav a[href="#planA"]'));}catch(e){console.log("init err:",e.message)}});
+document.addEventListener("DOMContentLoaded",function(){try{switchPage('main',document.querySelector('nav a[href="#main"]'));}catch(e){console.log("init err:",e.message)}});
 // Mobile nav collapse on scroll
-(function(){var ls=0,mx=0,th=0,nav=null;function onScroll(){if(window._modalOpen)return;if(!nav)nav=document.querySelector('nav');if(!nav||window.innerWidth>768)return;var st=window.pageYOffset||document.documentElement.scrollTop;if(st===ls)return;if(st>mx)mx=st;ls=st;var now=Date.now();if(now-th<60)return;th=now;if(st<=20){nav.classList.remove('collapsed');mx=st}else if(st>60&&st>=mx-5){nav.classList.add('collapsed')}else if(st<mx-35){nav.classList.remove('collapsed');mx=st}}window.addEventListener('scroll',onScroll,{passive:true});window._resetScroll=function(){ls=0;mx=0}})();</script>
+(function(){var ls=0,mx=0,th=0,nav=null;function onScroll(){if(window._modalOpen)return;if(!nav)nav=document.querySelector('nav');if(!nav||window.innerWidth>768)return;var st=window.pageYOffset||document.documentElement.scrollTop;if(st===ls)return;if(st>mx)mx=st;ls=st;var now=Date.now();if(now-th<60)return;th=now;if(st<=20){nav.classList.remove('collapsed');mx=st}else if(st>60&&st>=mx-5){nav.classList.add('collapsed')}else if(st<mx-35){nav.classList.remove('collapsed');mx=st}}window.addEventListener('scroll',onScroll,{passive:true});window._resetScroll=function(){ls=0;mx=0}})();
+
+</script>
 </body>
 </html>
