@@ -74,6 +74,8 @@ h3{font-size:15px;font-weight:600;margin:20px 0 8px}
 <div class="section">美食目录</div>
 <a href="#dirMust" onclick="switchPage('dirMust',this)">🔥 四大必吃</a>
 <a href="#dirAfternoon" onclick="switchPage('dirAfternoon',this)">🥢 下午逛吃路线</a>
+<div class="section">逛玩好店</div>
+<a href="#dirFun" onclick="switchPage('dirFun',this)">🛍️ 潮玩·精品·杂货</a>
 <div class="section">实用信息</div>
 <a href="#info" onclick="switchPage('info',this)">交通 · 预算 · 贴士</a>
 </nav>
@@ -239,6 +241,45 @@ const shops = {
     "must": "自助早餐·潮汕牛丸粿条",
     "lat": 23.3065,
     "lng": 116.163
+  },
+  "TOP TOY（万泰汇店）": {
+    "tag": "shop",
+    "cuisine": "潮玩盲盒",
+    "addr": "流沙北街道万泰汇购物中心1F中庭A060-062",
+    "time": "10:00-22:00",
+    "price": "¥39-299",
+    "ac": "✅",
+    "sit": "❌",
+    "desc": "全国连锁潮玩集合店，盲盒手办IP周边齐全，普宁最接近泡泡玛特的体验",
+    "must": "盲盒·手办·IP联名周边",
+    "lat": 23.31,
+    "lng": 116.158
+  },
+  "潮玩萌夹夹": {
+    "tag": "shop",
+    "cuisine": "夹娃娃·游艺",
+    "addr": "流沙北街道万泰汇购物中心B1层H1-H3-H4",
+    "time": "10:00-22:00",
+    "price": "¥10-50",
+    "ac": "✅",
+    "sit": "❌",
+    "desc": "玩具+动漫游艺+夹娃娃，2023年新开，逛万泰汇顺便玩一把",
+    "must": "夹娃娃·动漫周边",
+    "lat": 23.31,
+    "lng": 116.158
+  },
+  "小瑜瑜玩具店": {
+    "tag": "shop",
+    "cuisine": "怀旧玩具杂货",
+    "addr": "中华新城友谊街（老城关步行街内）",
+    "time": "白天-傍晚",
+    "price": "¥5-100",
+    "ac": "❌",
+    "sit": "❌",
+    "desc": "中华新城里的老玩具杂货店，各种小玩意琳琅满目，逛老城关顺路淘一淘",
+    "must": "怀旧小玩具·杂货",
+    "lat": 23.2965,
+    "lng": 116.1655
   }
 };
 const routes = {
@@ -298,7 +339,7 @@ const routes = {
   },
   "planBday2": {
     "title": "Day2 · 粿汁早餐 + 南平路逛吃",
-    "sub": "🥣 粿汁 | 🍖 猪脚饭 | 🥢 肠粉三连 | 🍧 甜汤歇脚 | 🍬 糖葱薄饼",
+    "sub": "🥣 粿汁 | 🍖 猪脚饭 | 🦪 蚝烙 | 🍧 甜汤歇脚 | 🥢 老周肠粉 | 🍬 糖葱薄饼",
     "items": [
       {
         "t": "8:30",
@@ -315,7 +356,7 @@ const routes = {
       {
         "t": "10:00",
         "w": "🚶 流沙老城散步",
-        "d": "经南平路感受早市烟火 步行消食",
+        "d": "经中华新城·老城关步行街 感受早市烟火 步行消食",
         "tr": 1
       },
       {
@@ -332,15 +373,15 @@ const routes = {
       },
       {
         "t": "12:30",
-        "w": "🥢 炎记肠粉",
-        "d": "30年老字号 卤汁浓稠咸香 午市到14:00",
-        "shop": "炎记肠粉"
-      },
-      {
-        "t": "13:15",
         "w": "🦪 洪阳蚝烙",
         "d": "南平路1号 蚝仔大颗外酥里嫩 ¥15-20",
         "shop": "洪阳蚝烙"
+      },
+      {
+        "t": "13:00",
+        "w": "🚶 老城关 citywalk",
+        "d": "逛老城关步行街·中华新城 猪肠胀糯米·甘草水果随逛随吃",
+        "tr": 1
       },
       {
         "t": "14:00",
@@ -361,10 +402,10 @@ const routes = {
         "shop": "糖葱薄饼"
       },
       {
-        "t": "15:45",
-        "w": "🥜 颜记肠粉",
-        "d": "花生酱肠粉普宁独此一家 24h营业 逛吃收尾",
-        "shop": "颜记肠粉"
+        "t": "15:30",
+        "w": "🛍️ 中华新城逛街",
+        "d": "老城关逛特产·草粿豆花街头觅食 最后买手信",
+        "tr": 1
       },
       {
         "t": "16:30",
@@ -485,7 +526,8 @@ function switchPage(id,el){
   if(id==='planB')m.innerHTML=renderRoute('planB');
   else if(id==='planBday2')m.innerHTML=renderRoute('planBday2');
   else if(id==='dirMust')m.innerHTML=renderDir(["集财牛肉","王记饭店","东兴生鱼粥","乞丐豆干"],'dirMust');
-  else if(id==='dirAfternoon')m.innerHTML=renderDir(["老牌洪阳粿汁（兰花店）","炎记肠粉","洪阳蚝烙","百明甜汤","老周肠粉","糖葱薄饼","颜记肠粉"],'dirAfternoon');
+  else if(id==='dirAfternoon')m.innerHTML=renderDir(["老牌洪阳粿汁（兰花店）","洪阳蚝烙","炎记肠粉","百明甜汤","老周肠粉","颜记肠粉","糖葱薄饼"],'dirAfternoon');
+  else if(id==='dirFun')m.innerHTML=renderDir(["TOP TOY（万泰汇店）","潮玩萌夹夹","小瑜瑜玩具店"],'dirFun');
   else if(id==='info')m.innerHTML=renderInfo();
   currentPage=id;
   setTimeout(function(){window.scrollTo(0,pageScrolls[id]||0);setTimeout(refreshAllChecks,100)},50);
