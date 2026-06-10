@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>普宁2天1夜 · 四大必吃悠闲之旅</title>
+<style>
+:root{--bg:#faf9f6;--card:#fff;--text:#2c2c2c;--muted:#888;--accent:#e65c41;--border:#e8e5e0;--shadow:0 1px 3px rgba(0,0,0,.06);--radius:10px;--nav-w:220px}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans SC","PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--text);line-height:1.6;display:flex;min-height:100vh}
+nav{width:var(--nav-w);background:#1e1e24;color:#e0e0e0;position:fixed;top:0;left:0;height:100vh;padding:24px 0;overflow-y:auto;z-index:100;display:flex;flex-direction:column}
+nav .logo{font-size:15px;font-weight:700;padding:0 20px 20px;border-bottom:1px solid rgba(255,255,255,.1);margin-bottom:8px;letter-spacing:.5px}
+nav .logo span{color:var(--accent)}
+nav a{display:block;padding:10px 20px;color:#aaa;text-decoration:none;font-size:13px;border-left:3px solid transparent;transition:.15s}
+nav a:hover{color:#fff;background:rgba(255,255,255,.05)}
+nav a.active{color:#fff;border-left-color:var(--accent);background:rgba(255,255,255,.08)}
+nav .section{font-size:10px;text-transform:uppercase;letter-spacing:1px;color:#666;padding:18px 20px 6px}
+main{margin-left:var(--nav-w);flex:1;padding:32px 40px;max-width:960px}
+h1{font-size:24px;font-weight:700;margin-bottom:4px}
+h2{font-size:18px;font-weight:600;margin:28px 0 12px}
+h3{font-size:15px;font-weight:600;margin:20px 0 8px}
+.subtitle{color:var(--muted);font-size:13px;margin-bottom:20px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:18px 20px;margin-bottom:14px;box-shadow:var(--shadow);cursor:pointer;transition:.15s;position:relative;border-left:3px solid var(--accent)}
+.card:hover{box-shadow:0 2px 8px rgba(0,0,0,.1);transform:translateY(-1px)}
+.card .name{font-weight:600;font-size:15px}
+.card .meta{font-size:12px;color:var(--muted);margin-top:4px;display:flex;gap:12px;flex-wrap:wrap}
+.card .short{font-size:13px;margin-top:6px;color:#555}
+.tag{display:inline-block;font-size:11px;padding:2px 8px;border-radius:10px;font-weight:500}
+.tag-food{background:#fff0ed;color:#e65c41}
+.tag-cafe{background:#f0effc;color:#6c5ce7}
+.tag-shop{background:#edf7f4;color:#2ca089}
+.tag-spot{background:#fef7ed;color:#d4842c}
+.tag-dinner{background:#edeff7;color:#3b7dd8}
+.timeline{position:relative;padding-left:28px}
+.timeline::before{content:'';position:absolute;left:11px;top:4px;bottom:4px;width:2px;background:var(--border);border-radius:1px}
+.timeline-item{position:relative;margin-bottom:18px;padding:12px 16px;background:var(--card);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow)}.timeline-item:not(.transit){border-left:3px solid var(--accent);cursor:pointer}
+.timeline-item::before{content:'';position:absolute;left:-22px;top:18px;width:10px;height:10px;border-radius:50%;border:2px solid var(--accent);background:var(--bg)}
+.timeline-item.transit::before{border-color:var(--muted)}
+.timeline-item .time{font-size:11px;color:var(--muted);font-weight:600}
+.timeline-item .what{font-weight:600;font-size:14px}
+.timeline-item .detail{font-size:12px;color:#666;margin-top:2px}
+.modal-overlay{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.45);z-index:999;justify-content:center;align-items:center}
+.modal-overlay.show{display:flex}
+.modal{background:var(--card);border-radius:14px;max-width:560px;width:90%;max-height:85vh;overflow-y:auto;box-shadow:0 8px 30px rgba(0,0,0,.18)}
+.modal .body{padding:20px 24px 24px}
+.modal .close{float:right;background:none;border:none;font-size:22px;cursor:pointer;color:var(--muted);padding:4px 8px;line-height:1}
+.modal h3{margin-top:0}
+.modal .info-row{display:flex;gap:16px;flex-wrap:wrap;font-size:12px;color:var(--muted);margin:8px 0}
+.modal .desc{font-size:13px;margin:10px 0;color:#444}
+.modal .must-try{font-size:13px;color:var(--accent);font-weight:500}
+.modal .gallery{display:flex;gap:8px;margin-top:12px;overflow-x:auto}
+.modal .gallery img{height:100px;border-radius:8px;background:#f0ede8;object-fit:cover}
+.dist-badge{position:absolute;top:8px;right:12px;font-size:11px;font-weight:600;padding:3px 10px;border-radius:14px;background:#eef6ff;color:#3b7dd8;white-space:nowrap}
+.dist-badge.near{background:#e8f5e9;color:#2ca089}
+.dist-badge.far{background:#f5f0ff;color:#7c4dff}
+.tl-dot{position:absolute;left:-22px;top:14px;width:18px;height:18px;border-radius:50%;background:var(--bg);border:2px solid var(--accent);cursor:pointer;z-index:2;display:flex;align-items:center;justify-content:center;font-size:10px;line-height:1;color:transparent;transition:.15s}.tl-dot.checked{background:var(--accent);color:#fff}.tl-dot.checked::after{content:'✓'}.timeline-item.checked{opacity:.5}.timeline-item.checked:hover{opacity:.7}.card.checked{opacity:.45}.card.checked:hover{opacity:.65}.platform-links{display:flex;gap:10px;margin-top:14px;flex-wrap:wrap}
+.platform-links a{display:inline-flex;align-items:center;gap:5px;padding:7px 14px;border-radius:20px;font-size:12px;font-weight:500;text-decoration:none;transition:.15s;border:1px solid transparent}
+.platform-links a:hover{transform:translateY(-1px)}
+.platform-links a.or{background:#fff5f0;color:#e65c41;border-color:#fdd8cc}
+.platform-links a.xhs{background:#fff0f5;color:#ff2448;border-color:#ffccd5}
+.platform-links a.dp{background:#fffdf0;color:#f5a623;border-color:#ffe8a0}
+.card-links{display:inline-flex;gap:4px;margin-left:8px}
+.card-links a{font-size:10px;padding:1px 6px;border-radius:10px;text-decoration:none;opacity:.7}
+.card-links a:hover{opacity:1}
+@media (max-width:768px){body{flex-direction:column}nav{position:sticky;top:0;width:100%;height:auto;flex-direction:row;flex-wrap:wrap;padding:8px 12px;gap:2px;overflow-x:auto;overflow-y:hidden;max-height:200px;background:#1e1e24;box-shadow:0 1px 4px rgba(0,0,0,.2)}nav .logo,nav .section{display:none}nav a{padding:6px 12px;font-size:12px;border-left:none;border-bottom:2px solid transparent;white-space:nowrap;border-radius:4px;}nav a.active{border-left:none;border-bottom-color:var(--accent)}nav.collapsed{max-height:36px;padding:3px 8px;flex-wrap:nowrap;overflow:hidden}nav.collapsed a{display:none}nav.collapsed a.active{display:inline-block;font-size:12px;padding:3px 10px}nav.collapsed::after{content:' ▾';font-size:12px;color:#999;padding:3px 4px;cursor:pointer;white-space:nowrap;flex-shrink:0}main{margin-left:0;padding:20px 16px}.modal{max-width:95vw}}
+</style>
+</head>
+<body>
+<nav>
+<div class="logo">🗺️ 普宁2天1夜 · 四大必吃悠闲之旅</div>
+<div class="section">行程路线</div>
+<a href="#planB" class="active" onclick="switchPage('planB',this)">Day1 · 集财牛肉+夜市</a>
+<a href="#planBday2" onclick="switchPage('planBday2',this)">Day2 · 粿汁+南平路逛吃</a>
+<div class="section">美食目录</div>
+<a href="#dirMust" onclick="switchPage('dirMust',this)">🔥 四大必吃</a>
+<a href="#dirAfternoon" onclick="switchPage('dirAfternoon',this)">🥢 下午逛吃路线</a>
+<div class="section">实用信息</div>
+<a href="#info" onclick="switchPage('info',this)">交通 · 预算 · 贴士</a>
+</nav>
+<main id="mainContent"></main>
+<div class="modal-overlay" id="modalOverlay" onclick="if(event.target===this)closeModal()">
+<div class="modal" id="modalBox"></div>
+</div>
+
+<script>window.onerror=function(m,s,l,c,e){console.log("ERR:",m,"at line",l);var d=document.getElementById("errlog");if(d)d.textContent+=(d.textContent?" | ":"")+m;return false};
+const shops = {
+  "集财牛肉": {
+    "tag": "dinner",
+    "cuisine": "烤牛肉",
+    "addr": "池尾街道上寮村荔园路（上寮娘宫旁）",
+    "time": "17:00-02:00",
+    "price": "¥50-80",
+    "ac": "❌",
+    "sit": "✅",
+    "desc": "普宁烤牛肉顶流，雪花牛肉现切按斤卖，烟火气十足的大排档",
+    "must": "烤雪花牛肉·胸口油·酸菜牛肉粿",
+    "lat": 23.302,
+    "lng": 116.152
+  },
+  "王记饭店": {
+    "tag": "food",
+    "cuisine": "猪脚饭",
+    "addr": "流沙大道西龙菀新村16栋（华侨医院斜对面）",
+    "time": "10:30-13:00 / 16:30-18:30",
+    "price": "¥30",
+    "ac": "⚠️",
+    "sit": "✅",
+    "desc": "普宁猪脚饭封神之作，老卤慢炖皮糯肉酥，猪脚经常中午就卖光",
+    "must": "猪脚饭·腐竹肉沫·多浇一勺老卤汁",
+    "lat": 23.303,
+    "lng": 116.162
+  },
+  "东兴生鱼粥": {
+    "tag": "food",
+    "cuisine": "鱼粥",
+    "addr": "普宁市区流沙（导航搜索东兴生鱼粥）",
+    "time": "17:30-02:00",
+    "price": "¥20-30",
+    "ac": "⚠️",
+    "sit": "✅",
+    "desc": "鱼肉现点现剖脆嫩鲜美，粥底浓稠糯香，加胡椒粉是灵魂",
+    "must": "生鱼粥·加胡椒粉提鲜",
+    "lat": 23.3,
+    "lng": 116.165
+  },
+  "乞丐豆干": {
+    "tag": "food",
+    "cuisine": "炸豆干",
+    "addr": "流沙市区（流沙夜市内）",
+    "time": "傍晚-深夜",
+    "price": "¥3/块",
+    "ac": "❌",
+    "sit": "⚠️",
+    "desc": "外皮金黄酥脆内里嫩滑如双皮奶，蘸韭菜盐水吃是普宁人的日常",
+    "must": "普宁炸豆干·韭菜盐水",
+    "lat": 23.299,
+    "lng": 116.164
+  },
+  "老牌洪阳粿汁（兰花店）": {
+    "tag": "food",
+    "cuisine": "粿汁",
+    "addr": "流沙龙苑新村20幢东起第一间（兰花广场旁）",
+    "time": "早餐时段（清晨-午市）",
+    "price": "¥10-20",
+    "ac": "⚠️",
+    "sit": "✅",
+    "desc": "流沙市区粿汁顶流，粿皮韧而不烂骨汤鲜醇，早餐界的排队王",
+    "must": "粿汁+卤肉+猪肠+小油条",
+    "lat": 23.303,
+    "lng": 116.1625
+  },
+  "炎记肠粉": {
+    "tag": "food",
+    "cuisine": "肠粉",
+    "addr": "天天渔港对面农业银行后面（芳草园）",
+    "time": "06:00-14:00 / 18:00-02:00",
+    "price": "¥10-15",
+    "ac": "⚠️",
+    "sit": "✅",
+    "desc": "30年老字号，早市夜宵双时段神店，卤汁浓稠咸香是普宁肠粉的本色",
+    "must": "普宁肠粉·秘制浓稠卤汁",
+    "lat": 23.299,
+    "lng": 116.163
+  },
+  "洪阳蚝烙": {
+    "tag": "food",
+    "cuisine": "蚝烙",
+    "addr": "南平路1号",
+    "time": "午市-晚市",
+    "price": "¥15-20",
+    "ac": "❌",
+    "sit": "✅",
+    "desc": "师傅现场烙制，蚝仔大颗饱满外酥里糯，南平路必吃头牌",
+    "must": "蚝烙·益母草汤",
+    "lat": 23.298,
+    "lng": 116.164
+  },
+  "百明甜汤": {
+    "tag": "cafe",
+    "cuisine": "甜汤",
+    "addr": "流沙平湖村（富祥酒店背后）",
+    "time": "午市-深夜",
+    "price": "¥10-15",
+    "ac": "⚠️",
+    "sit": "✅",
+    "desc": "平湖村口碑甜汤老店，逛吃中途歇脚充电刚好，盲点不踩雷",
+    "must": "绿豆爽·姜薯汤·清心丸",
+    "lat": 23.2975,
+    "lng": 116.165
+  },
+  "老周肠粉": {
+    "tag": "food",
+    "cuisine": "肠粉",
+    "addr": "新光南路与德才街交叉口北行70米路东",
+    "time": "全天",
+    "price": "¥10-15",
+    "ac": "⚠️",
+    "sit": "✅",
+    "desc": "皮极薄Q弹全天营业，腐竹加料是独门特色，出租车司机口口相传",
+    "must": "肠粉+腐竹·薄皮Q弹",
+    "lat": 23.297,
+    "lng": 116.166
+  },
+  "糖葱薄饼": {
+    "tag": "food",
+    "cuisine": "非遗甜食",
+    "addr": "老城关步行街（中华新城沿途流动摊）",
+    "time": "白天-傍晚",
+    "price": "¥5-10",
+    "ac": "❌",
+    "sit": "❌",
+    "desc": "潮汕非遗甜食，酥甜拉丝，边走边吃才是正确打开方式",
+    "must": "糖葱薄饼",
+    "lat": 23.2965,
+    "lng": 116.1655
+  },
+  "颜记肠粉": {
+    "tag": "food",
+    "cuisine": "肠粉",
+    "addr": "流沙东街道秀陇村新六路69号首层",
+    "time": "24小时",
+    "price": "¥10-15",
+    "ac": "⚠️",
+    "sit": "✅",
+    "desc": "普宁人气榜第一，花生酱肠粉独一无二，24小时随时可去",
+    "must": "花生酱肠粉（普宁独此一家）",
+    "lat": 23.2995,
+    "lng": 116.17
+  },
+  "普宁希尔顿惠庭酒店": {
+    "tag": "spot",
+    "cuisine": "酒店",
+    "addr": "普宁市金池路嘉应华府3幢",
+    "time": "全天",
+    "price": "¥337-400/晚",
+    "ac": "✅",
+    "sit": "✅",
+    "desc": "普宁卫生评分最高（9.7/10），智能马桶干湿分离，楼下麦当劳",
+    "must": "自助早餐·潮汕牛丸粿条",
+    "lat": 23.3065,
+    "lng": 116.163
+  }
+};
+const routes = {
+  "planB": {
+    "title": "Day1 · 集财牛肉+夜市+鱼粥",
+    "sub": "🚄 惠州南⇄普宁直达 | 🥩 集财牛肉 | 🫘 炸豆干 | 🐟 鱼粥",
+    "items": [
+      {
+        "t": "14:25",
+        "w": "🚄 惠州南站出发",
+        "d": "D7381直达普宁 1h07m ¥111",
+        "tr": 1
+      },
+      {
+        "t": "15:32",
+        "w": "🚄 抵达普宁站",
+        "d": "打车前往酒店约10-15分钟",
+        "tr": 1
+      },
+      {
+        "t": "16:00",
+        "w": "🏨 办理入住",
+        "d": "普宁希尔顿惠庭酒店 休整放行李",
+        "shop": "普宁希尔顿惠庭酒店"
+      },
+      {
+        "t": "17:00",
+        "w": "🥩 集财牛肉",
+        "d": "烤雪花牛肉·胸口油·酸菜牛肉粿 开门就去免排队",
+        "shop": "集财牛肉"
+      },
+      {
+        "t": "19:30",
+        "w": "🌙 前往流沙夜市",
+        "d": "散步消食后前往夜市扫街",
+        "tr": 1
+      },
+      {
+        "t": "20:00",
+        "w": "🫘 普宁炸豆干",
+        "d": "乞丐豆干 蘸韭菜盐水 ¥3/块",
+        "shop": "乞丐豆干"
+      },
+      {
+        "t": "20:30",
+        "w": "🦐 夜市继续逛吃",
+        "d": "生腌三目蟹·沙虾·反沙芋头",
+        "tr": 1
+      },
+      {
+        "t": "21:30",
+        "w": "🐟 鱼粥宵夜",
+        "d": "东兴生鱼粥 加胡椒粉提鲜 ¥20-30",
+        "shop": "东兴生鱼粥"
+      }
+    ]
+  },
+  "planBday2": {
+    "title": "Day2 · 粿汁早餐 + 南平路逛吃",
+    "sub": "🥣 粿汁 | 🍖 猪脚饭 | 🥢 肠粉三连 | 🍧 甜汤歇脚 | 🍬 糖葱薄饼",
+    "items": [
+      {
+        "t": "8:30",
+        "w": "🏨 退房寄存行李",
+        "d": "行李寄存前台 轻装出行",
+        "tr": 1
+      },
+      {
+        "t": "9:00",
+        "w": "🥣 老牌洪阳粿汁",
+        "d": "粿汁+卤肉+猪肠+小油条 ¥10-20 流沙顶流",
+        "shop": "老牌洪阳粿汁（兰花店）"
+      },
+      {
+        "t": "10:00",
+        "w": "🚶 流沙老城散步",
+        "d": "经南平路感受早市烟火 步行消食",
+        "tr": 1
+      },
+      {
+        "t": "11:00",
+        "w": "🍖 王记饭店 猪脚饭",
+        "d": "多浇一勺老卤汁！赶第一波免排队 ¥30",
+        "shop": "王记饭店"
+      },
+      {
+        "t": "12:00",
+        "w": "🚶 前往南平路片区",
+        "d": "开始下午逛吃之旅 全程步行可达",
+        "tr": 1
+      },
+      {
+        "t": "12:30",
+        "w": "🥢 炎记肠粉",
+        "d": "30年老字号 卤汁浓稠咸香 午市到14:00",
+        "shop": "炎记肠粉"
+      },
+      {
+        "t": "13:15",
+        "w": "🦪 洪阳蚝烙",
+        "d": "南平路1号 蚝仔大颗外酥里嫩 ¥15-20",
+        "shop": "洪阳蚝烙"
+      },
+      {
+        "t": "14:00",
+        "w": "🍧 百明甜汤 歇脚充电",
+        "d": "绿豆爽·姜薯汤·清心丸 坐下来休息半小时 ¥10-15",
+        "shop": "百明甜汤"
+      },
+      {
+        "t": "14:45",
+        "w": "🥢 老周肠粉",
+        "d": "皮极薄Q弹 腐竹加料有特色 全天营业",
+        "shop": "老周肠粉"
+      },
+      {
+        "t": "15:15",
+        "w": "🍬 糖葱薄饼",
+        "d": "非遗甜食 酥甜拉丝 边走边吃 ¥5-10",
+        "shop": "糖葱薄饼"
+      },
+      {
+        "t": "15:45",
+        "w": "🥜 颜记肠粉",
+        "d": "花生酱肠粉普宁独此一家 24h营业 逛吃收尾",
+        "shop": "颜记肠粉"
+      },
+      {
+        "t": "16:30",
+        "w": "🚕 前往普宁站",
+        "d": "中华新城打车约15分钟 不用回酒店",
+        "tr": 1
+      },
+      {
+        "t": "18:07",
+        "w": "🚄 返程",
+        "d": "D2319 普宁→惠州南 19:20到家 ¥69",
+        "tr": 1
+      }
+    ]
+  }
+};
+let userPos = null, distCache = {};var checklist={};try{checklist=JSON.parse(localStorage.getItem("hk_checks")||"{}")}catch(e){}function toggleCheck(id,el){checklist[id]=!checklist[id];try{localStorage.setItem("hk_checks",JSON.stringify(checklist))}catch(e){}refreshAllChecks()}function refreshAllChecks(){document.querySelectorAll(".tl-dot,.card,.timeline-item[data-shop],.modal-check").forEach(function(e){var id=e.dataset.shop;if(!id)return;if(checklist[id]){e.classList.add("checked");if(e.classList.contains("modal-check")){e.textContent='✓';e.style.background='var(--accent)';e.style.borderColor='var(--accent)';e.style.color='#fff'}}else{e.classList.remove("checked");if(e.classList.contains("modal-check")){e.textContent='';e.style.background='transparent';e.style.borderColor='#ccc';e.style.color='transparent'}}})}
+
+function isMobile(){return /Android|iPhone|iPad|iPod|webOS/i.test(navigator.userAgent)}
+
+// Deep link event delegation
+try{document.addEventListener('click',function(e){
+  if(!isMobile())return;
+  var a=e.target.closest('a');
+  if(!a||!a.dataset.scheme)return;
+  e.preventDefault();e.stopPropagation();
+  window.location=a.dataset.scheme;
+  setTimeout(function(){if(!document.hidden)window.location=a.href},2000);
+});}catch(e){console.log("click handler err:",e.message)}
+
+function haversine(lat1,ln1,lat2,ln2){
+  var R=6371,dLat=(lat2-lat1)*Math.PI/180,dLng=(ln2-ln1)*Math.PI/180;
+  var a=Math.sin(dLat/2)**2+Math.cos(lat1*Math.PI/180)*Math.cos(lat2*Math.PI/180)*Math.sin(dLng/2)**2;
+  return R*2*Math.atan2(Math.sqrt(a),Math.sqrt(1-a));
+}
+function getDist(id){if(!userPos)return null;var s=shops[id];if(!s||!s.lat)return null;if(distCache[id]!==undefined)return distCache[id];var km=haversine(userPos.lat,userPos.lng,s.lat,s.lng);distCache[id]=km;return km}
+function fmtDist(km){if(km===null)return'';if(km<.2)return Math.round(km*1000)+'m';return km.toFixed(1)+'km'}
+function distCls(km){if(km===null)return'';if(km<1)return'near';if(km>10)return'far';return''}
+function distBadgeHtml(id){var km=getDist(id);if(km===null)return'';return'<span class="dist-badge '+distCls(km)+'">'+fmtDist(km)+'</span>'}
+function refreshDist(){distCache={};document.querySelectorAll('.dist-badge-dynamic').forEach(function(el){var km=getDist(el.dataset.shop);if(km!==null){el.textContent=fmtDist(km);el.className='dist-badge dist-badge-dynamic '+distCls(km)}})}
+function initGeo(){try{if(!navigator.geolocation)return;navigator.geolocation.getCurrentPosition(function(pos){userPos={lat:pos.coords.latitude,lng:pos.coords.longitude};refreshDist()},function(){},{enableHighAccuracy:true,timeout:10000,maximumAge:300000})}catch(e){console.log("geo err:",e.message)}}function setLocation(lat,lng,label){userPos={lat:lat,lng:lng};distCache={};refreshDist();console.log("Location set to",label)}
+
+function linkXHS(name){return'https://www.xiaohongshu.com/search_result?keyword='+encodeURIComponent(name+' 普宁')+'&type=51'}
+function s2t(str){return str.split("").map(function(ch){var m={"馆":"館","点":"點","饭":"飯","记":"記","园":"園","楼":"樓","鱼":"魚","鸡":"雞","虾":"蝦","贝":"貝","车":"車","马":"馬","风":"風","电":"電","气":"氣","门":"門","国":"國","关":"關","汇":"匯","会":"會","东":"東","岛":"島","龙":"龍","云":"雲","达":"達","尔":"爾","亚":"亞","华":"華","万":"萬","宝":"寶","广":"廣","庙":"廟","庄":"莊","开":"開","张":"張","肠":"腸","面":"麵","头":"頭","发":"發","热":"熱","汤":"湯","饮":"飲","杂":"雜","货":"貨","买":"買","卖":"賣","铺":"鋪","饼":"餅","饺":"餃","烧":"燒","鸭":"鴨","鹅":"鵝","猪":"豬","药":"藥","医":"醫","厅":"廳","厨":"廚","卫":"衛","冻":"凍","卤":"滷","酱":"醬","盐":"鹽","鲜":"鮮","干":"乾","软":"軟","坚":"堅","金":"金","银":"銀","铜":"銅","铁":"鐵","钢":"鋼","丝":"絲","线":"線","红":"紅","绿":"綠","蓝":"藍","黄":"黃","黑":"黑","紫":"紫","艺":"藝","术":"術","设":"設","计":"計","展":"展","览":"覽","画":"畫","书":"書","乐":"樂","声":"聲","体":"體","旧":"舊","历":"曆","罗":"羅","汉":"漢","斋":"齋","禅":"禪","寺":"寺","宫":"宮","湾":"灣","环":"環","维":"維","深":"深","埗":"埗","旺":"旺","尖":"尖","咀":"咀","锣":"鑼","环":"環","坚":"堅","尼":"尼","离":"離","南":"南","北":"北","邮":"郵","银":"銀","行":"行","前":"前","后":"後","坊":"坊","家":"家"};return m[ch]||ch}).join("")}
+function linkDP(name){return'https://www.dianping.com/search/keyword/1697/0_'+encodeURIComponent(name)}
+function schemeXHS(name){return'xhsdiscover://search/result?keyword='+encodeURIComponent(name+' 普宁')}
+function schemeDP(name){return'dianping://searchshoplist?keyword='+encodeURIComponent(name)}
+function platLinks(name){return'<div class="platform-links"><a class="or" href="https://www.openrice.com/zh/hongkong/restaurants?what='+encodeURIComponent(s2t(name))+'" target="_blank">🔍 OpenRice 搜索</a><a class="xhs" href="'+linkXHS(name)+'" data-scheme="'+schemeXHS(name)+'" target="_blank">📕 小红书 搜索</a><a class="dp" href="'+linkDP(name)+'" data-scheme="'+schemeDP(name)+'" target="_blank">⭐ 大众点评 搜索</a></div>'}
+
+// Render
+function renderRoute(k){var _rid=k;
+  var r=routes[k],h='<h1>'+r.title+'</h1><p class="subtitle">'+r.sub+'</p><div class="timeline">';
+  r.items.forEach(function(it){
+    var cls=it.tr?'timeline-item transit':'timeline-item';
+    var click=it.shop?" onclick=\"openModal('"+it.shop+"')\" style=\"cursor:pointer\"":"";
+    var cid=it.shop||('_item_'+it.t+'_'+it.w.replace(/[^a-zA-Z0-9\u4e00-\u9fff]/g,'').substring(0,30));h+='<div class="'+cls+'" data-shop="'+cid+'"'+click+'>'+'<span class="tl-dot'+(checklist[cid]?' checked':'')+'" data-shop="'+cid+'" onclick="event.stopPropagation();toggleCheck(\''+cid+'\',this)"></span>';
+    h+='<div class="time">'+it.t;
+    if(it.shop){var d=getDist(it.shop);h+=' <span class="dist-badge-dynamic" data-shop="'+it.shop+'">'+(d!==null?fmtDist(d):'')+'</span>'}
+    h+='</div><div class="what">'+it.w+'</div>';
+    if(it.d)h+='<div class="detail">'+it.d+'</div>';
+    h+='</div>';
+  });
+  return h+'</div>';
+}
+
+function renderDir(list,title){
+  var h='<h1>'+title+'</h1><p class="subtitle">点击卡片查看详情</p>';
+  var types={food:'🍜 美食',cafe:'☕ 咖啡·甜品',shop:'🛍️ 特色店铺',spot:'📍 景点·交通',dinner:'🍽️ 晚餐'};
+  var byType={};
+  list.forEach(function(id){var s=shops[id];if(!s)return;var t=s.tag;if(!byType[t])byType[t]=[];byType[t].push(id)});
+  for(var t in byType){
+    h+='<h3>'+types[t]+'</h3>';
+    byType[t].forEach(function(id){
+      var s=shops[id],d=getDist(id);
+      var orU='https://www.openrice.com/zh/hongkong/restaurants?what='+encodeURIComponent(s2t(id));
+      var xhsU=linkXHS(id),dpU=linkDP(id),xhsS=schemeXHS(id),dpS=schemeDP(id);
+      h+='<div class="card'+(checklist[id]?' checked':'')+'" data-shop="'+id+'" onclick="openModal(\''+id+'\')">';
+      h+='<span class="dist-badge dist-badge-dynamic" data-shop="'+id+'" style="'+(d!==null?'':'display:none')+'">'+(d!==null?fmtDist(d):'')+'</span>';
+      h+='<div class="name">'+id+' <span class="tag tag-'+s.tag+'">'+s.cuisine+'</span>';
+      h+='<span class="card-links"><a class="or" href="'+orU+'" target="_blank" onclick="event.stopPropagation()" title="OpenRice">🍽️</a><a class="xhs" href="'+xhsU+'" data-scheme="'+xhsS+'" target="_blank" onclick="event.stopPropagation()" title="小红书">📕</a><a class="dp" href="'+dpU+'" data-scheme="'+dpS+'" target="_blank" onclick="event.stopPropagation()" title="大众点评">⭐</a></span></div>';
+      h+='<div class="meta"><span>📍 '+s.addr+'</span><span>💰 '+s.price+'</span><span>🪑 '+s.ac+'</span></div>';
+      h+='<div class="short">'+s.desc.substring(0,100)+'...</div></div>';
+    });
+  }
+  return h;
+}
+
+function renderInfo(){
+  return'<h1>实用信息</h1>'+
+'<div class="card" style="cursor:default"><h3>🚄 交通</h3><p style="font-size:13px"><b>去程</b>：6/17 D7381 惠州南 14:25→普宁 15:32（直达1h07m ¥111）<br><b>返程</b>：6/18 D2319 普宁 18:07→惠州南 19:20（直达1h13m ¥69）<br><b>购票</b>：铁路12306 APP 提前2-3天购票<br><b>市内</b>：打车为主（起步价¥8），共享电动车¥30/天最方便<br><b>惠州南→酒店</b>：打车10-15分钟</p></div>'+
+'<div class="card" style="cursor:default"><h3>💰 预算（人均）</h3><p style="font-size:13px">高铁往返：¥111+¥69=<b>¥180</b><br>酒店1晚（希尔顿惠庭）：<b>¥337-400</b><br>Day1晚餐+宵夜：<b>¥80-130</b><br>Day2全天逛吃：<b>¥100-150</b><br>市内交通：<b>¥60-100</b><br><b>合计：¥757-960</b></p></div>'+
+'<div class="card" style="cursor:default"><h3>⚠️ 注意事项</h3><p style="font-size:13px">👟 穿舒适平底鞋，Day2步行较多<br>🦟 6月带驱蚊水<br>💊 带健胃消食片（美食密度高）<br>🕐 集财牛肉17:00前到免排队<br>🕐 王记猪脚饭11:00前到（猪脚卖很快）<br>🥣 粿汁基本只做早市，Day2早上9点去正好<br>🧳 Day2退房行李寄存前台，不用回酒店<br>🔌 充电宝必带</p></div>'+
+'<div class="card" style="cursor:default"><h3>📍 定位参考点</h3><p style="font-size:13px">点击下方预设坐标可模拟GPS定位，查看各店铺距离：</p></div>'+
+'<button onclick="setLocation(23.285,116.158,\'普宁站\');return false" style="margin:4px 6px 4px 0;padding:6px 14px;border:1px solid #ddd;border-radius:16px;background:#f5f5f5;cursor:pointer;font-size:12px">🚄 普宁站</button>'+
+'<button onclick="setLocation(23.3065,116.163,\'希尔顿惠庭\');return false" style="margin:4px 6px 4px 0;padding:6px 14px;border:1px solid #ddd;border-radius:16px;background:#f5f5f5;cursor:pointer;font-size:12px">🏨 希尔顿惠庭</button>'+
+'<button onclick="userPos=null;distCache={};refreshDist();return false" style="margin:4px 6px 4px 0;padding:6px 14px;border:1px solid #fcc;border-radius:16px;background:#fff5f5;cursor:pointer;font-size:12px">✕ 清除位置</button>'+
+'';
+}
+
+// Modal
+function openModal(id){
+  var s=shops[id];if(!s)return;
+  var tags={food:'tag-food',cafe:'tag-cafe',shop:'tag-shop',spot:'tag-spot',dinner:'tag-dinner'};
+  var d=getDist(id),distHtml=d!==null?'<span>📏 距你 '+fmtDist(d)+'</span>':'';
+  var imgs=s.imgs?s.imgs.map(function(u){return'<img src="'+u+'" alt="'+id+'" onerror="this.style.display=\'none\'">'}).join(''):'';
+  document.getElementById('modalBox').innerHTML='<div class="body"><button class="close" onclick="closeModal()">✕</button><h3><span class="modal-check'+(checklist[id]?' checked':'')+'" data-shop="'+id+'" onclick="event.stopPropagation();toggleCheck(\''+id+'\',this);refreshAllChecks()" style="cursor:pointer;display:inline-block;width:22px;height:22px;line-height:22px;text-align:center;border-radius:50%;border:2px solid '+(checklist[id]?'var(--accent)':'#ccc')+';background:'+(checklist[id]?'var(--accent)':'transparent')+';color:#fff;font-size:12px;margin-right:4px;vertical-align:middle">'+(checklist[id]?'✓':'')+'</span>'+id+' <span class="tag '+tags[s.tag]+'">'+s.cuisine+'</span></h3><div class="info-row"><span>📍 '+s.addr+'</span><span>🕐 '+s.time+'</span><span>💰 '+s.price+'</span>'+distHtml+'</div><div class="info-row"><span>🪑 空调：'+s.ac+'</span><span>💺 可坐：'+s.sit+'</span></div><div class="desc">'+s.desc+'</div>'+(s.must?'<div class="must-try">✨ 必试：'+s.must+'</div>':'')+(imgs?'<div class="gallery">'+imgs+'</div>':'')+platLinks(id)+'</div>';
+  window._modalOpen=true;var _sy=window.pageYOffset||document.documentElement.scrollTop;document.getElementById('modalOverlay').classList.add('show');document.body.style.overflow='hidden';document.body.style.position='fixed';document.body.style.top='-'+_sy+'px';document.body.style.width='100%';document.body.dataset.scrollY=_sy;
+}
+function closeModal(){window._modalOpen=false;document.getElementById('modalOverlay').classList.remove('show');document.body.style.overflow='auto';document.body.style.position='';document.body.style.top='';document.body.style.width='';var _sy=parseInt(document.body.dataset.scrollY)||0;document.body.dataset.scrollY='';window.scrollTo(0,_sy);if(window._resetScroll)window._resetScroll()}
+
+// Page switching with scroll position memory
+var pageScrolls={},currentPage='planA';
+function switchPage(id,el){
+  document.querySelectorAll('nav a').forEach(function(a){a.classList.remove('active')});
+  if(el)el.classList.add('active');
+  var m=document.getElementById('mainContent');
+  pageScrolls[currentPage]=window.pageYOffset||document.documentElement.scrollTop;
+  if(id==='planB')m.innerHTML=renderRoute('planB');
+  else if(id==='planBday2')m.innerHTML=renderRoute('planBday2');
+  else if(id==='dirMust')m.innerHTML=renderDir(["集财牛肉","王记饭店","东兴生鱼粥","乞丐豆干"],'dirMust');
+  else if(id==='dirAfternoon')m.innerHTML=renderDir(["老牌洪阳粿汁（兰花店）","炎记肠粉","洪阳蚝烙","百明甜汤","老周肠粉","糖葱薄饼","颜记肠粉"],'dirAfternoon');
+  else if(id==='info')m.innerHTML=renderInfo();
+  currentPage=id;
+  setTimeout(function(){window.scrollTo(0,pageScrolls[id]||0);setTimeout(refreshAllChecks,100)},50);
+  initGeo();
+}
+
+// Init
+document.addEventListener("DOMContentLoaded",function(){try{switchPage('planB',document.querySelector('nav a[href="#planB"]'));}catch(e){console.log("init err:",e.message)}});
+// Mobile nav collapse on scroll
+(function(){var ls=0,mx=0,th=0,nav=null;function onScroll(){if(window._modalOpen)return;if(!nav)nav=document.querySelector('nav');if(!nav||window.innerWidth>768)return;var st=window.pageYOffset||document.documentElement.scrollTop;if(st===ls)return;if(st>mx)mx=st;ls=st;var now=Date.now();if(now-th<60)return;th=now;if(st<=20){nav.classList.remove('collapsed');mx=st}else if(st>60&&st>=mx-5){nav.classList.add('collapsed')}else if(st<mx-35){nav.classList.remove('collapsed');mx=st}}window.addEventListener('scroll',onScroll,{passive:true});window._resetScroll=function(){ls=0;mx=0}})();</script>
+</body>
+</html>
